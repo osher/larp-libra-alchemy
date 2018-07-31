@@ -1,6 +1,7 @@
 const CleanDir = require('clean-webpack-plugin')
 const CopyDir = require('copy-webpack-plugin')
 const HtmlEntry = require('html-webpack-plugin');
+const Favicon = require('favicons-webpack-plugin')
 const {resolve} = require('path');
 module.exports = {
   module: {
@@ -21,7 +22,8 @@ module.exports = {
     }]),
     new HtmlEntry({
       title:  'Libra - Alchemy Lab'
-    })
+    }),
+    new Favicon('./src/assets/alchemy-favicon.png')
   ],
   entry: {
     main: './src',
