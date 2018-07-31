@@ -1,0 +1,17 @@
+web:
+  port: 3030
+
+logger:
+  levels:
+    default: info
+
+shutdown:
+  grace:
+    #after how many signals to terminate abruptly
+    signals:  3
+    #how many ms to wait for graceful shutdown to complete
+    #before terminating abruptly
+    ms:       5000
+
+debug:
+  stackup: false
