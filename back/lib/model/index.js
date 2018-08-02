@@ -18,7 +18,7 @@ module.exports = (ioc) => {
       effect: ({
         attributes: {id, name, power, description},
         relations: {antigens: {models: antigens}}
-      }) => [id, power, name, description, antigens.map( ({attributes: {counter_id: id}}) => Number(id) )],
+      }) => [id, power, name, description, antigens.map( ({attributes: {counter_id: id}}) => id )],
 
       specialIngredient: ({
         attributes: {id, name, power, comment},
@@ -28,7 +28,19 @@ module.exports = (ioc) => {
           attributes: {old_effect_id: from, new_effect_id: to}
         }) => assign(alterations, {[from]: to}),
         {}
-      )]
+      )],
+
+      product: ({
+        attributes: {id, ingredient_id: ingr, procedure_id: proc, main_effect_id: main},
+        relations: { effects: {models: effects}}
+      }) => [id, ingr, proc, main, effects.map( ({attributes: {effect_id: id}}) => id )],
+
+      potion: ({
+        attributes: {id, name, description, creator_name},
+        relations: { effects: {models: effects}}
+      }) => [id, name, creator_name, description].concat(
+        effects.map(({attributes: {effect_id: id, effect_level: lvl}}) => [id, lvl])
+      )
     }
 
     log.debug('initializing');
@@ -39,32 +51,32 @@ module.exports = (ioc) => {
       createPotion: (potion) => createPotion(model, potion)
     }));
 
-    function initView({ingredient, procedure, effect, specialIngredient}) {
+    function initView({ingredient, procedure, effect, specialIngredient, product, potion}) {
         log.debug('initView');
         
         if (config.web.mockData) return Promise.resolve(mockData);
 
         return Promise.all([
           effect.all(),
-          specialIngredient.all(), 
-          ingredient.all(), 
-          procedure.all(), 
-          //product, 
-          //potion
+          specialIngredient.all(),
+          ingredient.all(),
+          procedure.all(),
+          product.all(),
+          potion.all()
         ]).then(([
           effects,
           specialIngredients,
           ingredients,
           procedures,
-          //product,
-          //potion
+          products,
+          potions
         ]) => ({
           effects:           effects.map(mapper.effect),
           specialIngredient: specialIngredients.map(mapper.specialIngredient),
           ingredients:       ingredients.map(mapper.idName),
           procedures:        procedures.map(mapper.idName),
-          product:           [],
-          potion:            []
+          product:           products.map(mapper.product),
+          potion:            potions.map(mapper.potion)
         }));
     }
 

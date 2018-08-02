@@ -11,6 +11,10 @@ module.exports = ({
     'antigen',
     'special-ingredient',
     'special-to-alterations',
+    'product',
+    'product-effects',
+    'potion',
+    'potion-effects'
   ],
   //----
   camelCase       = require('lodash/camelcase'),
