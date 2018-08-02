@@ -102,10 +102,10 @@ const lab = {
       (alterations, special) =>
         Object.keys(special.alterations).reduce(
           (alterations, originEffectId) => {
-            const altaration = alterations.byId(originEffectId);
+            const alteration = alterations.byId(originEffectId) || null;
             //when no alteration found for the origin effect
             //OR found alteration is from a special of a lesser precedence
-            return !altaration ||
+            return !alteration ||
               alteration.special.precedence <= special.precedence
               ? alterations.add({
                   id: originEffectId,

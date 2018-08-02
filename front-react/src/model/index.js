@@ -1,4 +1,4 @@
-import Effect from "./Effect";
+import Effect from "./effect";
 import SpecialEffect from "./special-ingredient";
 import Ingredient from "./ingredient";
 import Procedure from "./procedure";

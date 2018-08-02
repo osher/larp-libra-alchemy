@@ -1,5 +1,6 @@
 //--- by-id ------------------------
 export default function byId({id = ({id}) => id, instantiate} = {}) {
+  const {assign} = Object;
   const all = [];
   const byId = {};
 

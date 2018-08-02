@@ -14,6 +14,7 @@ class App extends Component {
 
   componentDidMount() {
     Service.init().then(() => {
+      global.model = model;
       console.log(model);
     });
   }
