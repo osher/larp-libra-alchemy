@@ -12,11 +12,16 @@ module.exports = (ioc) => {
       Promise,
       model    = require('./model'),
       web      = require('./web'),
+      db       = require('./db')
     } = ioc;
     let svr = null;
     log.debug('initalizing');
 
-    return model(ioc)
+    return db(ioc)
+    .then(db => {
+        log.debug('db initialized');
+        return model(assign(ioc, {db}));
+    })
     .then(model => {
         log.debug('model initialized');
         return web(assign(ioc, {model}));
