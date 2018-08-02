@@ -43,7 +43,9 @@ module.exports = ({
 
     enhancePinoPrototype(logger);
 
-    return logger.child({pkg: { name, version }});
+    return ['dev', 'development', undefined].includes(process.env.NODE_ENV)
+      ? logger
+      : logger.child({pkg: { name, version }});
 
     function enhancePinoPrototype(logger) {
         const proto = Object.getPrototypeOf(Object.getPrototypeOf(logger));
