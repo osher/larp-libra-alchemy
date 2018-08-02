@@ -13,7 +13,7 @@ module.exports = ({
     app.use(bodyParser.json());
     app.use(reqLog({logger}));
 
-    app.get('/data', (q, a, n) => {
+    app.get('/model', (q, a, n) => {
         model.initView()
         .then(v => a.json(v))
         .catch(n)

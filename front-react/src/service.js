@@ -1,19 +1,14 @@
 import axios from "axios";
 import model from "./model";
 
-class Service {
+export default {
   init() {
-    return axios.get(`http://localhost:3001/init`).then(response => {
-      model.init(response);
+    return axios.get('http://localhost:3030/model').then(response => {
+      model.init(response.data);
     });
-  }
+  },
 
-  preview(data) {
-    const { id, uuid } = data;
-    return axios.get(
-      `${process.env.REACT_APP_REST_API}/v2/preview?id=${id}&uuid=${uuid}`
-    );
+  createPotion(potion) {
+    throw new Error('not implemented');
   }
 }
-
-export default new Service();
