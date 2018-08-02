@@ -25,7 +25,7 @@ module.exports = ({
         .catch(n)
     });
 
-    app.use((q, a) => a.status(404).end({msg: 'no such endpoint', path: q.url}));
+    app.use((q, a) => a.status(404).json({msg: 'no such endpoint', path: q.url}));
     app.use((err, req, res, n) => {
         try {
             res.status(err.statusCode || 500)
