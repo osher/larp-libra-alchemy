@@ -1,8 +1,6 @@
 //--- Potion ------------------------
 import byName from "../core/by-name";
 import index from "../core/by-id";
-import Ingredient from "./ingredient";
-import Procedure from "./procedure";
 import Effect from "./effect";
 
 export default class Potion {
@@ -45,7 +43,7 @@ Potion.similar = appliedEffects => {
 
   appliedEffects.forEach(({ level, effect }) => {
     //check each time with removing one applied-effect
-    const remaining = appliedEffects.filter(a => a.effect.id != effect.id);
+    const remaining = appliedEffects.filter(a => a.effect.id !== effect.id);
     conditionalPush(remaining);
 
     permutateAddedTo(remaining);

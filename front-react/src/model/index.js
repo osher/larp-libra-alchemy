@@ -14,8 +14,10 @@ export default {
     specialEffects: SpecialEffect.all,
     ingredients: Ingredient.all,
     procedure: Procedure.all,
-    products: Product.all
+    products: Product.all,
+    potions: Potion.all
   },
+  receipt: () => new Receipt(),
   lab,
   init: ({ effects, specials, ingredients, procedures, products, potions }) => {
     Effect.all.init(effects);

@@ -75,7 +75,7 @@ const lab = {
         return pIx;
       }, index())
       .reduce((applied, { product, times }) => {
-        if (times == 1) {
+        if (times === 1) {
           console.log("adding all from", product.name);
           applied.push(
             ...product.effects.map((effect, ix) => ({
