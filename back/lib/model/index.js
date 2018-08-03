@@ -10,6 +10,8 @@ module.exports = (ioc) => {
     } = ioc;
 
     const {assign} = Object;
+    const numerically = (a,b) => a - b;
+    const byId = ([a],[b]) => a - b;
     const mapper = {
       idName: ({attributes: {id, name}}) => [id, name],
 
@@ -18,7 +20,11 @@ module.exports = (ioc) => {
       effect: ({
         attributes: {id, name, power, description},
         relations: {antigens: {models: antigens}}
-      }) => [id, power, name, description, antigens.map( ({attributes: {counter_id: id}}) => id )],
+      }) => [id, power, name, description,
+        antigens
+        .map( ({attributes: {counter_id: id}}) => id )
+        .sort(numerically)
+      ],
 
       specialIngredient: ({
         attributes: {id, name, power, comment},
@@ -33,13 +39,25 @@ module.exports = (ioc) => {
       product: ({
         attributes: {id, ingredient_id: ingr, procedure_id: proc, main_effect_id: main},
         relations: { effects: {models: effects}}
-      }) => [id, ingr, proc, main, effects.map( ({attributes: {effect_id: id}}) => id )],
+      }) => [id, ingr, proc, main, 
+        effects.reduce(
+          (unique, effect) =>
+            unique.includes(effect)
+              ? unique
+              : unique.push(effect) && unique,
+          []
+        )
+        .map( ({attributes: {effect_id: id}}) => id )
+        .sort(numerically)
+      ],
 
       potion: ({
         attributes: {id, name, description, creator_name},
         relations: { effects: {models: effects}}
       }) => [id, name, creator_name, description].concat(
-        effects.map(({attributes: {effect_id: id, effect_level: lvl}}) => [id, lvl])
+        effects
+        .map(({attributes: {effect_id: id, effect_level: lvl}}) => [id, lvl])
+        .sort(byId)
       )
     }
 
@@ -71,12 +89,12 @@ module.exports = (ioc) => {
           products,
           potions
         ]) => ({
-          effects:           effects.map(mapper.effect),
-          specialIngredient: specialIngredients.map(mapper.specialIngredient),
-          ingredients:       ingredients.map(mapper.idName),
-          procedures:        procedures.map(mapper.idName),
-          product:           products.map(mapper.product),
-          potion:            potions.map(mapper.potion)
+          effects:        effects.map(mapper.effect).sort(byId),
+          specials:       specialIngredients.map(mapper.specialIngredient).sort(byId),
+          ingredients:    ingredients.map(mapper.idName).sort(byId),
+          procedures:     procedures.map(mapper.idName).sort(byId),
+          products:       products.map(mapper.product).sort(byId),
+          potions:        potions.map(mapper.potion).sort(byId)
         }));
     }
 
