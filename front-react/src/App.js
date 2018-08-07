@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Service from "./service";
-import model from "./model";
+import model from "libra-front-model";
 
 class App extends Component {
   render() {

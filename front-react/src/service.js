@@ -1,5 +1,5 @@
 import axios from "axios";
-import model from "./model";
+import model from "libra-front-model";
 
 export default {
   init() {
