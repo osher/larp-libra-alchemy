@@ -13,6 +13,9 @@
     <Results 
       :effects="effects"
     />
+    <Similar
+      :potions="potions"
+    />
   </div>
 </template>
 
@@ -20,6 +23,7 @@
 import Search from './components/search.vue'
 import Receipt from './components/receipt.vue'
 import Results from './components/results.vue'
+import Similar from './components/similar.vue'
 import model from 'libra-front-model'
 
 
@@ -44,12 +48,16 @@ export default {
   components: {
     Search,
     Receipt,
-    Results
+    Results,
+    Similar
   },
 
   computed: {
     effects() {
       return model.lab.execute(this.receipt)
+    },
+    potions() {
+      return model.lab.similar(this.effects)
     }
   },
 

@@ -15,6 +15,7 @@
         <button @click="drop(s)">-</button>
       </li>
     </ul>
+    <span v-if="!products.length">המתכון ריק - חפש חומרים להוספה</span>
   </div>
 </template>
 

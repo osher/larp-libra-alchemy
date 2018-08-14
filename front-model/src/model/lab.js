@@ -1,4 +1,5 @@
 import Effect from "./effect";
+import Potion from "./potion";
 import index from "../core/by-id";
 
 const assign = Object.assign;
@@ -201,7 +202,8 @@ const lab = {
         });
       }, index({ id: e => e.effect.id }))
       .sort((a, b) => b.level - a.level)
-      .filter(({ level }) => level)
+      .filter(({ level }) => level),
+  similar: Potion.similar
 };
 
 export default lab;

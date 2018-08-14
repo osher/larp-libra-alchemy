@@ -52,8 +52,7 @@ Potion.similar = appliedEffects => {
   if (appliedEffects.length < 5) permutateAddedTo(appliedEffects);
 
   console.log("יש שיקוי כזה: ", currentPotion || "-na-");
-
-  similar.rm(currentPotion);
+  if (currentPotion) similar.rm(currentPotion);
   return similar.concat();
 
   function permutateAddedTo(effects) {

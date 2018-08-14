@@ -6,6 +6,7 @@
         {{e.effect.name}} ({{e.level}})
       </li>
     </ul>
+    <span v-if="!effects.length">-אין-</span>
   </div>
 </template>
 
