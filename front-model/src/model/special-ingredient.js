@@ -4,6 +4,7 @@ export default class SpecialIngredient {
   constructor(id, precedence, name, description, alterations) {
       if (Array.isArray(id)) return new SpecialIngredient(...id);
 
+      this.type = 'si';
       this.name = name;
       this.id = id;
       this.description = description;

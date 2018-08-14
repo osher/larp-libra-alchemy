@@ -8,6 +8,7 @@ export default class Product {
   constructor(id, ingredient, procedure, mainEffect, effects) {
     if (Array.isArray(id)) return new Product(...id);
 
+    this.type = 'prod';
     this.name = null;
     this.id = null;
     this.ingredient = Ingredient.all.byId(ingredient);

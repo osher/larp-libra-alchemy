@@ -7,6 +7,7 @@ import Potion from "./potion";
 import Receipt from "./receipt";
 import lab from "./lab";
 import SpecialIngredient from "./special-ingredient";
+require('../core/shims');
 
 export default {
   data: {
