@@ -1,5 +1,15 @@
-import './core/shims';
-import model from './model';
+import model from 'libra-front-model';
+import axios from 'axios';
+import view from './view';
+
+axiox.get('http://localhost:3030/model')
+.then(({data}) => model.init(data))
+.then(view.render(model, 'app'));
+
+
+document.write('<div id="app"><h1>Loading</h1></div>');
+
+global.model = model;
 
 console.log('hello index');
 
