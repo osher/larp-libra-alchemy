@@ -27,15 +27,18 @@ import { tag, template, useShadow } from 'slim-js/Decorators';
   <input s:id="queryInput" type="text" input="handleInput">
   <label>{{getPostfix(ingredient, procedure, specialIngredient)}}</label>
 </span>
-<search-result 
+
+<search-result
   s:repeat="results as result"
   click="handleItemClick"
   mousemove="itemMouseDetector"
   bind:is-selected="isSelected(result, currentSelection)"
-  bind:result-type="result.type"></search-results>
+  bind:result-type="result.type"
+></search-results>
+
 `)
 @useShadow(true)
-class חרפה extends Slim {
+class LabSearch extends Slim {
   
   model;
   ingredient;
@@ -186,7 +189,4 @@ class חרפה extends Slim {
 <span bind:type="result.type">{{result.name}}</span>
 `)
 @useShadow(true)
-class כלימה extends Slim {
-  
-  
-}
+class LabSearchResults extends Slim {}

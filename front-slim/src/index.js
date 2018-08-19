@@ -11,27 +11,20 @@ require('./extension-enterkey')
 @tag('alchemy-lab')
 @template(
 `
-<style>
-  div[role="main"] {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  div[role="content"] {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  @import url(https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.1/css/materialize.min.css);
-</style>
-
 <div role="main">
   <div role="index">
-    <lab-index s:id="labIndex"></lab-index>
+    <lab-index
+      s:id="labIndex"
+      on-index-selection="indexSelection"
+    ></lab-index>
   </div>
   <div role="content">
   
-    <lab-search bind:model="model" on-selection="addSelection"></lab-search>
+    <lab-search
+      s:id="search"
+      bind:model="model"
+      on-selection="addSelection"
+    ></lab-search>
     
     <h3>מתכון</h3>
     <lab-receipt s:id="labReceipt"
@@ -44,7 +37,10 @@ require('./extension-enterkey')
       <li s:repeat="appliedEffects as appliedEffect">
         {{appliedEffect.effect.name}}
       </li>
-    </ol>    
+    </ol>
+    <div role="empty" s:if="!appliedEffects.length">
+      אין השפעות
+    </div>
     
     <h3>שיקויים דומים</h3>
     <ol s:if="similarPotions.length">
@@ -52,8 +48,29 @@ require('./extension-enterkey')
         {{similarPotion.name}}
       </li>
     </ol>
+    <div role="empty" s:if="!similarPotions.length">
+      אין שיקויים דומים
+    </div>
   </div>
 </div>
+<style>
+  div[role="main"] {
+    display: flex;
+    flex-direction: row;
+  }
+
+  div[role="content"] {
+    display: flex;
+    padding: 20px; 
+    flex-direction: column;
+  }
+
+  div[role="empty"] {
+    color: darkblue
+  }
+
+  @import url(https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.1/css/materialize.min.css);
+</style>
 `
 )
 @useShadow(true)
@@ -66,7 +83,7 @@ class AlchemyLab extends Slim {
   constructor () {
     super();
     this.model = model;
-    this.receipt = model.receipt();
+    this.receipt = window.receipt = model.receipt();
   }
   
   receiptDuplicate (item) {
@@ -82,6 +99,7 @@ class AlchemyLab extends Slim {
   
   receiptRemove (item) {
     this.receipt.drop(item)
+    this.labReceipt.receipt = { products: [], specials: [] };
     this.labReceipt.receipt = this.receipt;
   }
   
@@ -94,7 +112,7 @@ class AlchemyLab extends Slim {
     this.labReceipt.receipt = this.receipt;
     this.appliedEffects = this.model.lab.execute(this.receipt);
   }
-  
+
   onCreated() {
       fetch('http://localhost:3030/model')
       .then( res => res.json() )
