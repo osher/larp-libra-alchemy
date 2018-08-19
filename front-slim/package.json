@@ -1,5 +1,5 @@
 {
-  "name": "slimjs-client-boilerplate",
+  "name": "libra-front-slimjs",
   "version": "1.0.1",
   "description": "Slim.js webpack boilerplate.",
   "main": "index.js",
