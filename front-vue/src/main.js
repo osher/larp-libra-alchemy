@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import model from 'libra-front-model'
-import App from './App.vue'
+import App from './app.vue'
 import store from './store'
 
 fetch('http://localhost:3030/model')
