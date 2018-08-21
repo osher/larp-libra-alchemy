@@ -12,7 +12,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --entry ./src/model/index.js --output-library model --output-library-target commonjs-module --output dist/index.js",
-    "dev": "webpack --entry ./src/model/index.js --output-library model --output-library-target commonjs-module --output dist/index.js --watch"
+    "build": "webpack --entry ./src/model/index.js --output-library model --output-library-target commonjs-module --output dist/index.js --mode production",
+    "dev": "webpack --entry ./src/model/index.js --output-library model --output-library-target commonjs-module --output dist/index.js --mode development --watch"
   }
 }
