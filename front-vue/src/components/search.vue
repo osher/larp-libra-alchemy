@@ -1,3 +1,46 @@
+<style scoped lang="scss">
+.selected {
+  background-color: yellow;
+}
+
+.suggestion {
+  display: flex;
+  &.i {
+    color: darkblue
+  }
+  &.p {
+    color: darkred
+  }
+  &.si {
+    color: darkgreen
+  }
+  &::before {
+    font-size: 55%;
+    display: inline-block;
+    border-radius: 2px;
+    color: white;
+    padding: 2px;
+    margin: 2px;
+    position: relative;
+    top: -2px;
+    letter-spacing: 1px;
+    opacity: 0.8;
+  }
+  &.i::before {
+    content: "מרכיב";
+    background: var(--color-ing);
+  }
+  &.p::before {
+    content: "תהליך";
+    background: var(--color-pr);
+  }
+  &.si::before {
+    content: "מיוחד";
+    background: var(--color-sp);
+  }
+}
+</style>
+
 <template>
   <div>
     <div v-if="!halfProduct">
@@ -32,11 +75,11 @@
       />
     </div>
     <ul v-if="suggestions.length">
-      <li
+      <span
         v-for="s in suggestions" class="suggestion" :class="itemClass(s)"
         @click="select(s)"
         @mouseover="current(s)"
-      >{{s.name}}</li>
+      >{{s.name}}</span>
     </ul>
   </div>
 </template>
@@ -120,15 +163,4 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-.selected {
-  background-color: yellow;
-}
-
-.suggestion {
-  &.i {color: blue}
-  &.p {color: red}
-  &.si {color: green}
-}
-</style>
 

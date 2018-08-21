@@ -2,6 +2,7 @@ import Vue from 'vue'
 import model from 'libra-front-model'
 import App from './app.vue'
 import store from './store'
+require('./index.scss')
 
 fetch('http://localhost:3030/model')
 .then( res => res.json() )

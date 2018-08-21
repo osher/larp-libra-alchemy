@@ -1,29 +1,54 @@
 <template>
   <div id="app">
-    <Search 
-      @product="addProduct"
-      @special-ingr="addSpecialIngredient"
+    <LabIndex 
+      @on-selection="indexSelection"
     />
-    <Receipt
-      :products="products"
-      :specials="specials"
-      @drop="drop"
-      @duplicate="duplicate"
-    />
-    <Results 
-      :effects="effects"
-    />
-    <Similar
-      :potions="potions"
-    />
+    <div id="content">
+      <Search 
+        ref="search"
+        @product="addProduct"
+        @special-ingr="addSpecialIngredient"
+      />
+      <Receipt
+        :products="products"
+        :specials="specials"
+        @drop="drop"
+        @duplicate="duplicate"
+      />
+      <Results 
+        :effects="effects"
+      />
+      <Similar
+        :potions="potions"
+      />
+    </div>
   </div>
 </template>
+
+<style lang="scss">
+body { padding: 0 ; margin: 0}
+#app {
+  display: flex;
+  flex-direction: row;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+
+#content {
+  display: flex;
+  padding: 20px; 
+  flex-direction: column;
+}
+</style>
 
 <script>
 import Search from './components/search.vue'
 import Receipt from './components/receipt.vue'
 import Results from './components/results.vue'
 import Similar from './components/similar.vue'
+import LabIndex from './components/lab-index.vue'
 import model from 'libra-front-model'
 
 
@@ -46,6 +71,7 @@ export default {
   },
 
   components: {
+    LabIndex,
     Search,
     Receipt,
     Results,
@@ -82,17 +108,11 @@ export default {
           ;
         collection.push(item);
         collection.sort(({name:a}, {name:b}) => a > b ? 1 : a == b ? 0 : -1);
+    },
+    indexSelection(item) {
+      this.$refs.search.select(item)
     }
   }
  }
 </script>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
