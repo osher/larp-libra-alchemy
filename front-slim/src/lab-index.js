@@ -5,12 +5,27 @@ import {tag, template, useShadow} from "slim-js/Decorators"
 @template(
 `
  <h4>מרכיבים</h4>
-  <span s:repeat="ingredients as i" mtype="i">{{i.name}}</span>
+  <span
+    s:repeat="ingredients as data" 
+    bind:ingredient="data"
+    click="click"
+    mtype="i" 
+  >{{data.name}}</span>
  <h4>תהליכים</h4>
-  <span s:repeat="procedures as p" mtype="p">{{p.name}}</span>
+  <span 
+    s:repeat="procedures" 
+    bind:procedure="data"
+    click="click"
+    mtype="p"
+  >{{data.name}}</span>
  <hr>
  <h4>מיוחדים</h4>
-  <span s:repeat="specialEffects as si" mtype="si">{{si.name}}</span>
+  <span
+    s:repeat="specialEffects"
+    bind:special="data"
+    click="click"
+    mtype="si"
+  >{{data.name}}</span>
  <style>
   :host {
     display: flex;
@@ -20,7 +35,7 @@ import {tag, template, useShadow} from "slim-js/Decorators"
   }
 
   span:hover {
-    background-color: yellow;
+    background: var(--result-hover);
     cursor: pointer;
   }
   span::before {
@@ -61,6 +76,11 @@ import {tag, template, useShadow} from "slim-js/Decorators"
 )
 @useShadow(true)
 class LabIndex extends Slim {
-  
-
+  click({currentTarget, target}) {
+    const { ingredient, procedure, special } = currentTarget;
+    this.labSearch.fromIndex(
+      ingredient && ingredient.name
+      || procedure && procedure.name
+      || special && special.name);
+  }
 }

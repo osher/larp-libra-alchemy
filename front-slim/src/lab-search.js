@@ -24,7 +24,11 @@ import { tag, template, useShadow } from 'slim-js/Decorators';
 
 <span>
   <label>{{getPrefix(ingredient, procedure, specialIngredient)}}</label>
-  <input s:id="queryInput" type="text" input="handleInput">
+  <input
+    s:id="queryInput"
+    type="text"
+    input="handleInput"
+  >
   <label>{{getPostfix(ingredient, procedure, specialIngredient)}}</label>
 </span>
 
@@ -75,6 +79,13 @@ class LabSearch extends Slim {
       }
       this.currentSelection = this.results[targetIndex];
     });
+  }
+  
+  fromIndex(q) {
+      this.queryInput.value = q;
+      this.handleInput();
+      this.currentSelection = this.results[0];
+      this.submit();
   }
   
   getPostfix () {

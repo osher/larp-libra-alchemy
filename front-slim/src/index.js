@@ -21,7 +21,7 @@ require('./extension-enterkey')
   <div role="content">
   
     <lab-search
-      s:id="search"
+      s:id="labSearch"
       bind:model="model"
       on-selection="addSelection"
     ></lab-search>
@@ -34,8 +34,8 @@ require('./extension-enterkey')
     
     <h3>השפעות</h3>
     <ol s:if="appliedEffects.length">
-      <li s:repeat="appliedEffects as appliedEffect">
-        {{appliedEffect.effect.name}}
+      <li s:repeat="appliedEffects as applied">
+        {{applied.effect.name}} - (רמה {{applied.level}})
       </li>
     </ol>
     <div role="empty" s:if="!appliedEffects.length">
@@ -81,9 +81,9 @@ class AlchemyLab extends Slim {
   effects = [];
   
   constructor () {
-    super();
-    this.model = model;
-    this.receipt = window.receipt = model.receipt();
+      super();
+      this.model = model;
+      this.receipt = window.receipt = model.receipt();
   }
   
   receiptDuplicate (item) {
@@ -94,30 +94,39 @@ class AlchemyLab extends Slim {
         ;
       collection.push(item);
       collection.sort(({name:a}, {name:b}) => a > b ? 1 : a == b ? 0 : -1);
-    this.labReceipt.receipt = this.receipt;
+      this.update();
   }
   
   receiptRemove (item) {
-    this.receipt.drop(item)
-    this.labReceipt.receipt = { products: [], specials: [] };
-    this.labReceipt.receipt = this.receipt;
+      this.receipt.drop(item)
+      this.labReceipt.receipt = { products: [], specials: [] };
+      this.update();
+  }
+
+  update() {
+      this.labReceipt.receipt = this.receipt;
+      this.appliedEffects = this.receipt.effects = this.model.lab.execute(this.receipt);
   }
   
   addSelection ({ingredient, procedure, specialIngredient}) {
-    if (specialIngredient) {
-      this.receipt.specialize(specialIngredient)
-    } else {
-      this.receipt.produce(ingredient, procedure);
-    }
-    this.labReceipt.receipt = this.receipt;
-    this.appliedEffects = this.model.lab.execute(this.receipt);
+      if (specialIngredient) {
+          this.receipt.specialize(specialIngredient)
+      } else {
+          this.receipt.produce(ingredient, procedure);
+      }
+      this.update()
   }
 
   onCreated() {
+      this.labIndex.labSearch = this.labSearch;
+
       fetch('http://localhost:3030/model')
       .then( res => res.json() )
       .then( data => model.init(data))
-      .then( () => console.log('model initiated',  window.model = model ) || this.populate(model.data));
+      .then( () => 
+        console.log('model initiated',  window.model = model ) 
+        || this.populate(model.data)
+      );
   }
   populate({ingredients, procedure: procedures, specialEffects}) {
     

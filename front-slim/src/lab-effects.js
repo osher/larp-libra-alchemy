@@ -4,7 +4,7 @@ import { tag, template, useShadow } from 'slim-js/Decorators';
 @tag('lab-receipt')
 @template(`
 <ol>
-  <li s:repeat="receipt.products">
+  <li s:repeat="receipt.products as data">
     <span>{{data.name}}</span>
     <button
       bind:can-duplicate="canDuplicate(data, receipt)"
@@ -12,6 +12,10 @@ import { tag, template, useShadow } from 'slim-js/Decorators';
       role="duplicate"
     >+1</button>
     <button click="removeItem" bind:data="data">X</button>
+    <lab-prod-effects
+      bind:main-effect="data.mainEffect"
+      bind:effects="data.effects"
+    ></lab-prod-effects>
   </li>
   <li s:repeat="receipt.specials">
     <span>{{data.name}}</span>
@@ -41,7 +45,7 @@ class LabEffects extends Slim {
 
   constructor () {
     super();
-    this.receipt = null;
+    this.receipt = {products: [], specials: []};
   }
 
   isEmpty({products, specials}) {
@@ -63,5 +67,25 @@ class LabEffects extends Slim {
   removeItem ({target}) {
     const { data } = target;
     this.callAttribute('on-remove', data);
+  }
+}
+
+@tag('lab-prod-effects')
+@useShadow(true)
+@template(`
+  <style>
+    li[role="main"] { font-weight: bold }
+  </style>
+  <ol>
+    <li s:repeat="effects" bind:role="roleOf(data)">{{data.name}}</li>
+  </ol>
+`)
+class LabProdEffects extends Slim{
+  prod;
+  mainEffect;
+  effects;
+
+  roleOf(data) {
+    return this.mainEffect.id == data.id ? "main" : "sec"
   }
 }
