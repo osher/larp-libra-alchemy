@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "front-vue2": "file:../front-vue"
+    "libra-front-slimjs": "file:../front-slim"
   }
 }
