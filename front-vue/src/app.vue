@@ -26,20 +26,20 @@
 </template>
 
 <style lang="scss">
-body { padding: 0 ; margin: 0}
+body { padding: 0 ; margin: 0; overflow: hidden }
 #app {
   display: flex;
   flex-direction: row;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  font-family: Arial;
 }
 
 #content {
   display: flex;
-  padding: 20px; 
+  flex: 3;
+  padding: 20px;
   flex-direction: column;
+  height: 95vh;
+  overflow-y: auto;
 }
 </style>
 
@@ -59,7 +59,7 @@ export default {
 
   data: () => {
     const r = model.receipt();
-
+    
     window.receipt = r;
 
     return { 
