@@ -1,11 +1,11 @@
 require('./index.scss')
-const {assign} = Object;
+const {assign} = Object
 import {Slim} from "slim-js"
 import {tag, template, useShadow} from "slim-js/Decorators"
 import model from "libra-front-model"
 require('./lab-index')
 require('./lab-search')
-require('./lab-effects');
+require('./lab-receipt')
 require('./extension-enterkey')
 
 @tag('alchemy-lab')
