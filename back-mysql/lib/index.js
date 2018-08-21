@@ -3,8 +3,7 @@ module.exports = (ioc) => {
     const {
       config: {
         web: {
-          port,
-          mockData
+          port
         }
       },
       logger,
@@ -18,11 +17,7 @@ module.exports = (ioc) => {
     let svr = null;
     log.debug('initalizing');
 
-    return (
-      mockData
-        ? Promise.resolve({})
-        : db(ioc)
-    )
+    return db(ioc)
     .then(db => {
         log.debug('db initialized');
         return model(assign(ioc, {db}));

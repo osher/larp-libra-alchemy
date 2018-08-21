@@ -1,6 +1,5 @@
 web:
   port: 3030
-  mockData: true
 
 database:
   client: mysql
