@@ -39,10 +39,22 @@
     background: var(--color-sp);
   }
 }
+#search {
+  position: relative;
+}
+#suggestions {
+  position: absolute;
+  background-color: white;
+   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  top: 22px;
+  right: 38px;
+  padding: 3px;
+  z-index: 3;
+}
 </style>
 
 <template>
-  <div>
+  <div id="search">
     <div v-if="!halfProduct">
       חפש: <input 
         type="text"
@@ -74,13 +86,13 @@
         @keyup.enter="select()"
       />
     </div>
-    <ul v-if="suggestions.length">
+    <div id="suggestions" v-if="suggestions.length">
       <span
         v-for="s in suggestions" class="suggestion" :class="itemClass(s)"
         @click="select(s)"
         @mouseover="current(s)"
       >{{s.name}}</span>
-    </ul>
+    </div>
   </div>
 </template>
 
