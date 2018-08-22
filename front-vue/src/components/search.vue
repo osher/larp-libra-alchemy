@@ -106,7 +106,7 @@ export default {
       return model.data.procedure.byName(query)
       .concat(
         model.data.ingredients.byName(query),
-        model.data.specialEffects.byName(query)
+        model.data.specialIngredients.byName(query)
       );
     },
     selected() {

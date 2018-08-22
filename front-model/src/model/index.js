@@ -1,5 +1,4 @@
 import Effect from "./effect";
-import SpecialEffect from "./special-ingredient";
 import Ingredient from "./ingredient";
 import Procedure from "./procedure";
 import Product from "./product";
@@ -8,11 +7,12 @@ import Receipt from "./receipt";
 import lab from "./lab";
 import SpecialIngredient from "./special-ingredient";
 require('../core/shims');
+const byNameSort = ({name:a}, {name:b}) => a > b ? 1 : a == b ? 0 : -1;
 
 export default {
   data: {
     effects: Effect.all,
-    specialEffects: SpecialEffect.all,
+    specialIngredients: SpecialIngredient.all,
     ingredients: Ingredient.all,
     procedure: Procedure.all,
     products: Product.all,
@@ -27,5 +27,6 @@ export default {
     Procedure.all.init(procedures);
     Product.all.init(products);
     Potion.all.init(potions);
-  }
+  },
+  byNameSort,
 };

@@ -4,7 +4,7 @@ export default function byId({id = ({id}) => id, instantiate} = {}) {
   const all = [];
   const byId = {};
 
-  if (instantiate) instantiate.find = (entity) => Number.is(entity) ? byId[entity] : entity;
+  if (instantiate) instantiate.find = (entity) => entity instanceof instantiate ? entity : byId[entity];
 
   return assign(all, {
     byId: (id) => byId[id],

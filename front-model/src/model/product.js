@@ -4,6 +4,8 @@ import Ingredient from "./ingredient";
 import Procedure from "./procedure";
 import Effect from "./effect";
 
+const byNameSort = ({name:a}, {name:b}) => a > b ? 1 : a == b ? 0 : -1;
+
 export default class Product {
   constructor(id, ingredient, procedure, mainEffect, effects) {
     if (Array.isArray(id)) return new Product(...id);
@@ -28,6 +30,11 @@ export default class Product {
 
     this.id = this.ingredient.id * 1e3 + this.procedure.id;
     this.name = `${this.procedure.name} של ${this.ingredient.name}`;
+  }
+  antigens(all) {
+      return (all ? this.effects : [this.mainEffect])
+        .reduce((res, {antigens}) => res.concat(antigens), [])
+        .sort(byNameSort)
   }
 }
 Product.all = byName({ instantiate: Product });

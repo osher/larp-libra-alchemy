@@ -1,28 +1,3 @@
-<template>
-  <div class="index"><div class="scrolled">
-    <h4>מרכיבים</h4>
-    <span
-      v-for="i in ingredients"
-      @click="select(i)"
-      mtype="i"
-      >{{i.name}}</span>
-  <h4>תהליכים</h4>
-    <span
-      v-for="p in procedure"
-      @click="select(p)"
-      mtype="p"
-      >{{p.name}}</span>
-  <h4>מיוחדים</h4>
-    <span
-      v-for="si in specialEffects"
-      @click="select(si)"
-      mtype="si"
-      >{{si.name}}</span>
-  &nbsp;
-  </div>
-  </div>
-</template>
-
 <style lang="scss">
   .index {
     display: flex;
@@ -31,12 +6,14 @@
     background: lightgrey;
     overflow: auto;
     height: 100vh;
+    direction: ltr;
   }
   .index .scrolled {
     padding: 10px;
     margin-bottom: 40px;
     display: flex;
     flex-direction: column;
+    direction: rtl;
   }
   .index span:hover{
     background: var(--result-hover);
@@ -76,6 +53,31 @@
     background: var(--color-pr);
   }
 </style>
+
+<template>
+  <div class="index"><div class="scrolled">
+  <h4>תהליכים</h4>
+    <span
+      v-for="p in procedure"
+      @click="select(p)"
+      mtype="p"
+      >{{p.name}}</span>
+    <h4>מרכיבים</h4>
+    <span
+      v-for="i in ingredients"
+      @click="select(i)"
+      mtype="i"
+      >{{i.name}}</span>
+  <h4>מיוחדים</h4>
+    <span
+      v-for="si in specialIngredients"
+      @click="select(si)"
+      mtype="si"
+      >{{si.name}}</span>
+  &nbsp;
+  </div>
+  </div>
+</template>
 
 <script>
 const byName = ({name:a}, {name:b}) => a > b ? 1 : a == b ? 0 : -1;

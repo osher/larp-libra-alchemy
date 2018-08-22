@@ -1,10 +1,11 @@
 <template>
   <div>
     <h2>תוצאות</h2>
-    <ul>
+    <ul v-if="effects.length">
       <li v-for="(e,ix) in effects" :key="ix" :class="ix > 5 ? 'o' : 'i'">
         {{e.effect.name}} ({{e.level}})
       </li>
+      <button>פרסם</button>
     </ul>
     <span v-if="!effects.length">-אין-</span>
   </div>
@@ -18,6 +19,6 @@ export default {
 
 <style scoped lang="scss">
   .o {color: gray}
-  .i {color: darkgreen}
+  .i {color: darkorange}
 </style>
 

@@ -3,7 +3,11 @@
     <h2>שיקויים דומים</h2>
     <ul>
       <li v-for="(p,ix) in potions" :key="ix">
-        {{p.name}}
+        <b>{{p.name}}</b><br>
+        {{p.description}}
+        <ol>
+          <li v-for="a in p.effects">{{a.effect.name}} ({{a.level}})</li>
+        </ol>
       </li>
     </ul>
     <span v-if="!potions.length">-אין-</span>

@@ -51,9 +51,6 @@ import Similar from './components/similar.vue'
 import LabIndex from './components/lab-index.vue'
 import model from 'libra-front-model'
 
-
-const byName = ({name:a}, {name:b}) => a > b ? 1 : a == b ? 0 : -1;
-
 export default {
   name: 'app',
 
@@ -89,12 +86,11 @@ export default {
 
   methods: {
     addProduct({ingredient, procedure}) {
-      this.receipt.produce(ingredient, procedure);
-      this.receipt.products.sort(byName);
+      if (!this.receipt.produce(ingredient, procedure))
+          console.warn('לא ניתן להוסיף את אותו תוצר פעם שלישית');
     },
     addSpecialIngredient(specialIngr) { 
       this.receipt.specialize(specialIngr);
-      this.receipt.specials.sort(byName);
     },
     drop(item) {
         console.log('app.drop', item.type || 'prod', item)
