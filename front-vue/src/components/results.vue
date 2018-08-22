@@ -1,13 +1,12 @@
 <template>
   <div>
-    <h2>תוצאות</h2>
+    <h2>השפעות התוצאה</h2>
     <ul v-if="effects.length">
       <li v-for="(e,ix) in effects" :key="ix" :class="ix > 5 ? 'o' : 'i'">
         {{e.effect.name}} ({{e.level}})
       </li>
-      <button>פרסם</button>
     </ul>
-    <span v-if="!effects.length">-אין-</span>
+    <span class="empty" v-if="!effects.length">-אין-</span>
   </div>
 </template>
 
