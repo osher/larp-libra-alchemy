@@ -1,4 +1,5 @@
 //--- Potion ------------------------
+const {assign} = Object;
 import byName from "../core/by-name";
 import index from "../core/by-id";
 import Effect from "./effect";
@@ -52,7 +53,11 @@ Potion.similar = appliedEffects => {
   if (appliedEffects.length < 5) permutateAddedTo(appliedEffects);
 
   console.log("יש שיקוי כזה: ", currentPotion || "-na-");
-  if (currentPotion) similar.rm(currentPotion);
+  if (currentPotion) {
+      similar.rm(currentPotion);
+      return assign(similar.concat(), {source: currentPotion});
+  }
+
   return similar.concat();
 
   function permutateAddedTo(effects) {
