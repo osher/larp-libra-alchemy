@@ -41,6 +41,11 @@
 }
 #search {
   position: relative;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-bottom: 0px;
+  background-color: white;
+  z-index: 12;
 }
 #suggestions {
   position: absolute;
@@ -49,7 +54,7 @@
   top: 22px;
   right: 38px;
   padding: 3px;
-  z-index: 3;
+  z-index: 13;
 }
 </style>
 
