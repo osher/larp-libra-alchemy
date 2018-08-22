@@ -9,16 +9,19 @@ export default class Receipt {
       this.effects = null;
   }
   produce(ingr, proc) {
-      this.products.push(Product.of(ingr, proc));
+      const prod = Product.of(ingr, proc);
+      if (2 == this.products.filter(p => p == prod).length) return false;
+      this.products.push(prod);
+      return true;
   }
   drop(p) {
       const col = p.type == 'si' ? this.specials : this.products;
       const ix = col.indexOf(p);
       if (ix == -1) return;
-      col.splice(ix, 1);      
+      col.splice(ix, 1);
   }
   specialize(spec) {
-      this.specials.push(SpecialIngredient.find(spec))
+      this.specials.push(SpecialIngredient.find(spec));
   }
 }
 //--- /Receipt -----------------------
