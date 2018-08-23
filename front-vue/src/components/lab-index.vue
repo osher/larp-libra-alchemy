@@ -1,6 +1,7 @@
 <style lang="scss">
   .index {
     display: flex;
+    flex: 1;
     flex-direction: column;
     background: lightgrey;
     overflow: auto;

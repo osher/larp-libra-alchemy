@@ -7,7 +7,7 @@ body { padding: 0 ; margin: 0; overflow: hidden }
 }
 #index {
   display: flex;
-  min-width: 20%;
+  min-width: 220px;
 }
 #content {
   display: flex;
@@ -41,11 +41,17 @@ body { padding: 0 ; margin: 0; overflow: hidden }
   margin-top: 20px;
 }
 #saveForm INPUT {
-  flex-grow: 1
+  flex-grow: 1;
+  font-weight: bold;
+}
+#saveForm .cr {
+  font-style: italic;
+  font-weight: normal;
 } 
 #results TEXTAREA {
   width: 100%;
   height: 100px;
+  font-family: arial;
 }
 </style>
 
@@ -80,7 +86,7 @@ body { padding: 0 ; margin: 0; overflow: hidden }
             <div v-if="effects.length && !potions.source" id="saveForm">
               <input v-model="pubName"/><button @click="publish">פרסם</button>
               <textarea v-model="pubDescr"></textarea>
-              יוצר: <input v-model="pubCreator"/>
+              יוצר: <input class="cr" v-model="pubCreator"/>
             </div>
           </div>
           <div class="h">

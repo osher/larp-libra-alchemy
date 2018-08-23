@@ -4,7 +4,10 @@
   color: darkblue;
 }
 .source H2 { color: darkred }
-
+.a {color: darkorange}
+.descr {
+  margin-top: 35px;
+}
 </style>
 
 <template>
@@ -16,16 +19,18 @@
       <i>{{potions.source.creator}}</i>
     </div>
     <h2>שיקויים דומים</h2>
-    <ul>
-      <li v-for="(p,ix) in potions" :key="ix">
-        <b>{{p.name}}</b><br>
-        <p>{{p.description}}</p>
-        <ol>
-          <li v-for="a in p.effects">{{a.effect.name}} ({{a.level}})</li>
-        </ol>
-        <i>{{p.creator}}</i>
-      </li>
-    </ul>
+    <div>
+      <div v-for="(p,ix) in potions" :key="ix">
+        <ul>
+          <li v-for="a in p.effects" class="a">{{a.effect.name}} ({{a.level}})</li>
+          <p class="descr">
+            <b>{{p.name}}</b><br>
+            <p>{{p.description}}</p>
+            <i>{{p.creator}}</i>
+          </p>
+        </ul>
+      </div>
+    </div>
     <span v-if="!potions.length">-אין-</span>
   </div>
 </template>
