@@ -4,7 +4,12 @@
   color: darkblue;
 }
 .source H2 { color: darkred }
-.a {color: darkorange}
+.a {
+  color: darkorange;
+}
+.similar {
+  margin-bottom: 20px;
+}
 .descr {
   margin-top: 35px;
 }
@@ -20,15 +25,15 @@
     </div>
     <h2>שיקויים דומים</h2>
     <div>
-      <div v-for="(p,ix) in potions" :key="ix">
+      <div v-for="(p,ix) in potions" :key="ix" class="similar">
         <ul>
           <li v-for="a in p.effects" class="a">{{a.effect.name}} ({{a.level}})</li>
-          <p class="descr">
-            <b>{{p.name}}</b><br>
-            <p>{{p.description}}</p>
-            <i>{{p.creator}}</i>
-          </p>
         </ul>
+        <div class="descr">
+          <b :potion="p.id">{{p.name}}</b><br>
+          <p>{{p.description}}</p>
+          <i>{{p.creator}}</i>
+        </div>
       </div>
     </div>
     <span v-if="!potions.length">-אין-</span>
