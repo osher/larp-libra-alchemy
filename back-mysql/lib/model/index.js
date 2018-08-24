@@ -98,8 +98,39 @@ module.exports = (ioc) => {
         }));
     }
 
-    function createPotion(potion) {
-        log.debug({potion}, 'createPotion');
-        return Promise.reject(new Error('not implemented'));
+    function createPotion(model, {
+      name,
+      by:     creator_name,
+      descr:  description,
+      effects
+    }) {
+        const potion = {
+          name,
+          by:     creator_name,
+          descr:  description,
+        };
+        log.debug({potion, effects}, 'create potion');
+        return model.mgr.transaction(transacting =>
+          model.potion.forge({
+            name,
+            description,
+            creator_name
+          }).save(null, {transacting})
+          .tap(potion => log.debug({potion: potion.toJSON}, "created potion") || Promise.all(
+            effects.map(
+              ([id, lvl]) => potion.related('effects').create({
+                effect_id: id,
+                effect_level: lvl
+              }, {transacting})
+              .then(() => log.debug({effect: {id,lvl}}, "created potion-effect"))
+            )
+          ))
+        )
+        .then(potion => potion.fetch({withRelated:['effects']}))
+        .then(mapper.potion)
+        .then(potion => {
+            log.debug({potion}, 'created')
+            return potion
+        })
     }
 };
