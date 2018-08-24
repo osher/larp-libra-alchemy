@@ -33,29 +33,6 @@ body { padding: 0 ; margin: 0; overflow: hidden }
   flex-wrap: wrap;
   flex-direction: column;
 }
-#results #saveForm {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  margin-top: 20px;
-}
-#saveForm INPUT {
-  flex-grow: 1;
-  font-weight: bold;
-}
-#saveForm .cr {
-  font-style: italic;
-  font-weight: normal;
-} 
-#results TEXTAREA {
-  width: 100%;
-  height: 100px;
-  font-family: arial;
-}
-#results .reject {
-  color: red
-}
 </style>
 
 
@@ -86,12 +63,10 @@ body { padding: 0 ; margin: 0; overflow: hidden }
             <Results 
               :effects="effects"
             />
-            <div v-if="reject" class="reject">{{reject}}</div>
-            <div v-if="effects.length && !potions.source" id="saveForm">
-              <input v-model="pubName"/><button @click="publish">פרסם</button>
-              <textarea v-model="pubDescr"></textarea>
-              יוצר: <input class="cr" v-model="pubCreator"/>
-            </div>
+            <SavePotion v-if="effects.length && !potions.source" 
+              ref="saveForm"
+              @new-potion="publish"
+            />
           </div>
           <div class="h">
             <Similar
@@ -108,6 +83,7 @@ body { padding: 0 ; margin: 0; overflow: hidden }
 import Search from './components/search.vue'
 import Receipt from './components/receipt.vue'
 import Results from './components/results.vue'
+import SavePotion from './components/save-potion.vue'
 import Similar from './components/similar.vue'
 import LabIndex from './components/lab-index.vue'
 import model from 'libra-front-model'
@@ -137,6 +113,7 @@ export default {
     Search,
     Receipt,
     Results,
+    SavePotion,
     Similar
   },
 
@@ -173,34 +150,16 @@ export default {
     indexSelection(item) {
       this.$refs.search.select(item)
     },
-    publish() {
-      const { 
-        pubName: name,
-        pubDescr: descr,
-        pubCreator: by,
-        effects 
-      } = this;
-
-      const data = { 
+    publish({name, by, descr, effects}) {
+      const data = {
         name,
         by,
         descr,
-        effects:  
-          effects.map(
-            ({level, effect: { id: effectId }}) => ([effectId, level])
-          )
+        effects: this.effects.map(
+          ({level, effect: { id: effectId }}) => ([effectId, level])
+        )
       };
-      
-      console.log('publish clicked', data)
-      
-      this.reject =
-        !name && "יש להזין שם שיקוי"
-        || descr.length < 20 && "תיאור השיקוי קצר מדיי"
-        || !by && "יש להזין את שם דמות יוצר השיקוי"
-        || ''
-      ;
-      if (this.reject) return;
-      
+
       //TBD: indicate sending with loader
       fetch('http://localhost:3030/potion', {
         method: 'POST',
@@ -209,8 +168,14 @@ export default {
         },
         body: JSON.stringify(data)
       })
-      .then(() => { /* indicate success */ })
-      .catch((e) => { /* indicate error */ })
+      .catch((e) => { 
+        this.$refs.saveForm.err("הפרסום לא הצליח :(")
+      })
+      .then(() => { 
+        /* indicate success */
+        this.$refs.saveForm.ok("הפרסום הצליח")
+        .then(() => this.products.concat(this.specials).forEach(item => this.receipt.drop(item)));
+      })
     }
   }
  }
