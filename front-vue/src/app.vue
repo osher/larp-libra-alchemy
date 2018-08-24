@@ -53,6 +53,9 @@ body { padding: 0 ; margin: 0; overflow: hidden }
   height: 100px;
   font-family: arial;
 }
+#results .reject {
+  color: red
+}
 </style>
 
 
@@ -83,6 +86,7 @@ body { padding: 0 ; margin: 0; overflow: hidden }
             <Results 
               :effects="effects"
             />
+            <div v-if="reject" class="reject">{{reject}}</div>
             <div v-if="effects.length && !potions.source" id="saveForm">
               <input v-model="pubName"/><button @click="publish">פרסם</button>
               <textarea v-model="pubDescr"></textarea>
@@ -124,6 +128,7 @@ export default {
       pubName: '',
       pubDescr: '',
       pubCreator: '',
+      reject: ''
     }
   },
 
@@ -182,20 +187,19 @@ export default {
         descr,
         effects:  
           effects.map(
-            ({level, effect: { id: effectId }}) => ({effectId, level})
+            ({level, effect: { id: effectId }}) => ([effectId, level])
           )
       };
       
       console.log('publish clicked', data)
       
-      const reject =
+      this.reject =
         !name && "יש להזין שם שיקוי"
         || descr.length < 20 && "תיאור השיקוי קצר מדיי"
         || !by && "יש להזין את שם דמות יוצר השיקוי"
+        || ''
       ;
-      if (reject) {
-          return alert(reject);
-      }
+      if (this.reject) return;
       
       //TBD: indicate sending with loader
       fetch('http://localhost:3030/potion', {
