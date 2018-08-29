@@ -9,6 +9,15 @@ module.exports = ({
       toString: function() { return this.rows.join(';\n') }
     })
     const types = [{
+      xInsert: /$^/, //match nothing
+      create: (
+        `-- clear old tables (if found)
+        DROP TABLE IF EXISTS potion_effects, potion;
+        DROP TABLE IF EXISTS special_To_effect, special;
+        DROP TABLE IF EXISTS product_to_effect, antigen, product;
+        DROP TABLE IF EXISTS effect, \`procedure\`, ingredient`
+      )
+    }, {
       create: (
         `-- table ingredient
         CREATE TABLE ingredient (
@@ -150,17 +159,7 @@ module.exports = ({
       xInsert: /INSERT INTO \[?Potion_To_Effect\]? /,
       format: line => line.replace(/.* VALUES/, 'INSERT INTO potion_effects (potion_id, effect_id, effect_level) VALUES')
     }].map(type);
-    
-    types.unshift({
-        xInsert: /$^/,
-        toString: () => `
-          DROP TABLE IF EXISTS potion_effects, potion;
-          DROP TABLE IF EXISTS special_To_effect, special;
-          DROP TABLE IF EXISTS product_to_effect, antigen, product;
-          DROP TABLE IF EXISTS effect, \`procedure\`, ingredient;
-        `
-    });
- 
+
     fs.readFileSync(src)
     .toString().split(';')
     .forEach(line => {
