@@ -6,6 +6,7 @@ module.exports = ({
   cors        = require('cors'),
   bodyParser  = require('body-parser'),
   reqLog      = require('express-pino-logger'),
+  io          = require('socket.io'),
 }) => {
     app.disable('x-powered-by');
     app.disable('etag');
@@ -35,6 +36,20 @@ module.exports = ({
             res.end( inspect(err) )
         }
     });
+    const web = require('http').createServer(app);
+/*
+    {
+      const log = logger.of('sockets');
+      const channel = io(web).on('connection', (skt) => {
+          log.info('user connected');
+
+          skt.on('disconnect', () => {
+              console.log('user disconnected');
+          });
+      });
+
+      web.msg => 
+    }*/
     
-    return app;
+    return web;
 };

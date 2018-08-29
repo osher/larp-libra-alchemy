@@ -28,6 +28,7 @@
     "mysql": "^2.16.0",
     "pino": "^4.17.6",
     "pino-std-serializers": "^2.1.0",
+    "socket.io": "^2.1.1",
     "stackup": "^1.0.2"
   },
   "devDependencies": {
