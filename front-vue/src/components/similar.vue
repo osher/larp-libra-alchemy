@@ -27,7 +27,7 @@
     <div>
       <div v-for="(p,ix) in potions" :key="ix" class="similar">
         <ul>
-          <li v-for="a in p.effects" class="a">{{a.effect.name}} ({{a.level}})</li>
+          <li v-for="a in p.sortedEffects()" class="a">{{a.effect.name}} ({{a.level}})</li>
         </ul>
         <div class="descr">
           <b :potion="p.id">{{p.name}}</b><br>

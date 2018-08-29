@@ -61,7 +61,8 @@ body { padding: 0 ; margin: 0; overflow: hidden }
         <div id="results">
           <div class="h">
             <Results 
-              :effects="effects"
+              ref="results"
+              :effects="sortedEffects"
             />
             <SavePotion v-if="effects.length && !potions.source" 
               ref="saveForm"
@@ -100,6 +101,7 @@ export default {
       step: 0,
       products: r.products,
       specials: r.specials,
+      effects: r.effects,
       receipt: r,
       pubName: '',
       pubDescr: '',
@@ -118,8 +120,8 @@ export default {
   },
 
   computed: {
-    effects() {
-      return model.lab.execute(this.receipt)
+    sortedEffects() {
+      return this.effects.concat().sort((a,b) => b.id - a.id)
     },
     potions() {
       return model.lab.similar(this.effects)
@@ -155,7 +157,7 @@ export default {
         name,
         by,
         descr,
-        effects: this.effects.map(
+        effects: this.sortedEffects.slice(0,5).map(
           ({level, effect: { id: effectId }}) => ([effectId, level])
         )
       };
