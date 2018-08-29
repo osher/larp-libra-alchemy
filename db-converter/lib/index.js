@@ -18,8 +18,8 @@ module.exports = ({
            primary key (id)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8`
       ),
-      xInsert: /INSERT INTO Ingredient /,
-      format: line => line.toLowerCase()
+      xInsert: /INSERT INTO \[?Ingredient\]? /,
+      format: line => line.replace(/.* VALUES/, 'INSERT INTO `ingredient` VALUES')
     }, {
       create: (
         `-- table procedure
@@ -30,7 +30,7 @@ module.exports = ({
            primary key (id)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8`
       ),
-      xInsert: /INSERT INTO \[Procedures\]/,
+      xInsert: /INSERT INTO \[?Procedures\]? /,
       format: line => line.replace(/.* VALUES/, 'INSERT INTO `procedure` (id, `name`, `comment`) VALUES'),
     }, {
       create: (
@@ -46,7 +46,7 @@ module.exports = ({
            primary key (id)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8`
       ),
-      xInsert: /INSERT INTO Effects \(/,
+      xInsert: /INSERT INTO \[?Effects\]? \(/,
       format: line => line
         .replace(
           /.* VALUES/,
@@ -68,7 +68,7 @@ module.exports = ({
            CONSTRAINT fk_product_main_effect FOREIGN KEY (main_effect_id) REFERENCES effect (id)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8`
       ),
-      xInsert: /INSERT INTO \[Products\]/,
+      xInsert: /INSERT INTO \[?Products\]? /,
       format: line => line.replace(/.* VALUES/, 'INSERT INTO product (id, ingredient_id, `Procedure_id`, `comment`, main_effect_id) VALUES')
     }, {
       create: (
@@ -81,7 +81,7 @@ module.exports = ({
            CONSTRAINT FK_effect_2 FOREIGN KEY (counter_id) REFERENCES effect (id)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8`
       ),
-      xInsert: /INSERT INTO Counters/,
+      xInsert: /INSERT INTO \[?Counters\]? /,
       format: line => line.replace(/.* VALUES/, 'INSERT INTO antigen (effect_id, counter_id) VALUES')
     }, {
       create: (
@@ -93,7 +93,7 @@ module.exports = ({
            CONSTRAINT fk_product_to_effect__effect FOREIGN KEY (effect_id) REFERENCES effect (id)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8`
       ),
-      xInsert: /INSERT INTO \[Products_To_Effects\]/,
+      xInsert: /INSERT INTO \[?Products_To_Effects\]? /,
       format: line => line.replace(/.* VALUES/, 'INSERT INTO product_to_effect (product_id, effect_id) VALUES')
     }, {
       create: (
@@ -106,7 +106,7 @@ module.exports = ({
            primary key (id)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8`
       ),
-      xInsert: /INSERT INTO \[Specials\]/,
+      xInsert: /INSERT INTO \[?Specials\]? /,
       format: line => line.replace(/.* VALUES/, 'INSERT INTO special (id, `name`, power, `comment`) VALUES')
     }, {
       create: (
@@ -120,7 +120,7 @@ module.exports = ({
            CONSTRAINT fk_special_to_effect__new_effect FOREIGN KEY (new_effect_id) REFERENCES effect (id)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8`
       ),
-      xInsert: /INSERT INTO \[Specials_To_Effects\]/,
+      xInsert: /INSERT INTO \[?Specials_To_Effects\]? /,
       format: line => line.replace(/.* VALUES/, 'INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES')
     }, {
       create: (
@@ -133,7 +133,7 @@ module.exports = ({
          primary key (id)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8`
       ),
-      xInsert: /INSERT INTO \[Potions\]/,
+      xInsert: /INSERT INTO \[?Potions\]? /,
       format: line => line.replace(/.* VALUES/, 'INSERT INTO potion (id, `name`, description, `creator_name`) VALUES')
     }, {
       create: (
@@ -147,9 +147,19 @@ module.exports = ({
            CONSTRAINT fk_potion_effects__effect_id FOREIGN KEY (effect_id) REFERENCES effect (id)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8`
       ),
-      xInsert: /INSERT INTO \[Potion_To_Effect\]/,
+      xInsert: /INSERT INTO \[?Potion_To_Effect\]? /,
       format: line => line.replace(/.* VALUES/, 'INSERT INTO potion_effects (potion_id, effect_id, effect_level) VALUES')
     }].map(type);
+    
+    types.unshift({
+        xInsert: /$^/,
+        toString: () => `
+          DROP TABLE IF EXISTS potion_effects, potion;
+          DROP TABLE IF EXISTS special_To_effect, special;
+          DROP TABLE IF EXISTS product_to_effect, antigen, product;
+          DROP TABLE IF EXISTS effect, \`procedure\`, ingredient;
+        `
+    });
  
     fs.readFileSync(src)
     .toString().split(';')
@@ -160,6 +170,7 @@ module.exports = ({
         )
     });
 
+    types.unshift
     types.push('\n\n');
     const txt = types.join(';\n');
     

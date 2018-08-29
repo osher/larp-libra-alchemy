@@ -1,4 +1,1241 @@
-CREATE TABLE [Counters]
+﻿CREATE TABLE [Counters]
+(
+   `Effect_ID` INT NOT NULL,
+   `Counter_ID` INT NOT NULL
+);
+
+CREATE TABLE Effects
+(
+   `ID` INT NOT NULL AUTO_INCREMENT ,
+   `Name` NVARCHAR(100) NOT NULL,
+   `Power` INT NOT NULL,
+   `Commulative` TINYINT NOT NULL,
+   `Has_Counter` TINYINT NOT NULL,
+   `Description` NVARCHAR(500),
+   `Comment` NVARCHAR(500)
+);
+
+CREATE TABLE Ingredient
+(
+   `ID` INT NOT NULL AUTO_INCREMENT ,
+   `Name` NVARCHAR(100) NOT NULL,
+   `Comment` NVARCHAR(500)
+);
+
+CREATE TABLE Potion_To_Effect
+(
+   `Potion_ID` INT,
+   `Effect_ID` INT,
+   `Effect_Level` NVARCHAR(100)
+);
+
+CREATE TABLE Potions
+(
+   `ID` INT NOT NULL AUTO_INCREMENT ,
+   `Name` NVARCHAR(100) NOT NULL,
+   `Description` NVARCHAR(500),
+   `Creator_Name` NVARCHAR(100)
+);
+
+CREATE TABLE Procedures
+(
+   `ID` INT NOT NULL AUTO_INCREMENT ,
+   `Name` NVARCHAR(100) NOT NULL,
+   `Comment` NVARCHAR(500)
+);
+
+CREATE TABLE Products
+(
+   `ID` INT NOT NULL AUTO_INCREMENT ,
+   `Ingredient_ID` INT NOT NULL,
+   `Procedure_ID` INT NOT NULL,
+   `Comment` NVARCHAR(500),
+   `Main_Effect_ID` INT
+);
+
+CREATE TABLE Products_To_Effects
+(
+   `Product_ID` INT NOT NULL,
+   `Effect_ID` INT NOT NULL
+);
+
+CREATE TABLE Specials
+(
+   `ID` INT NOT NULL AUTO_INCREMENT ,
+   `Name` NVARCHAR(100) NOT NULL,
+   `Power` INT NOT NULL,
+   `Comment` NVARCHAR(100)
+);
+
+CREATE TABLE Specials_To_Effects
+(
+   `Special_ID` INT,
+   `Old_ID` INT,
+   `New_ID` INT
+);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (12, 13);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (13, 12);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (54, 31);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (31, 54);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (24, 23);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (23, 24);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (28, 29);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (29, 28);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (31, 75);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (75, 31);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (32, 33);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (33, 32);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (37, 39);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (39, 37);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (12, 40);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (40, 12);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (12, 17);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (17, 12);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (12, 15);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (15, 12);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (12, 44);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (44, 12);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (54, 73);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (73, 54);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (12, 14);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (14, 12);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (12, 42);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (42, 12);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (19, 41);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (41, 19);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (19, 21);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (21, 19);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (54, 72);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (72, 54);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (19, 59);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (59, 19);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (19, 22);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (22, 19);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (19, 61);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (61, 19);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (49, 55);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (55, 49);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (63, 16);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (16, 63);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (31, 74);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (74, 31);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (79, 57);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (57, 79);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (79, 38);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (38, 79);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (80, 35);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (35, 80);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (80, 34);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (34, 80);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (53, 56);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (56, 53);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (97, 30);
+
+INSERT INTO Counters (`Effect_ID`, `Counter_ID`) VALUES (30, 97);
+
+SET IDENTITY_INSERT `Effects` ON;
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (12, 'מאזן נפשית', 3, 'True', 'True', 'מרגיעה נפשית, מתנגד להשפעות נפשיות מסויימות', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (13, 'בלבול', 5, 'True', 'True', 'בלבול מנטלי, חומר כיוון, מחשבות מבולבלות. מוריד סף להשפעה חיצונית', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (14, 'אובססיביות', 6, 'False', 'True', 'גורם לאובססיה לגבי אנשים, חפצים או דברים כלליים', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (15, 'מבטל עכבות', 7, 'True', 'True', 'מוריד חסמים נפשיים של הדמות מלעשות פעולות. המושפע יפעל ללא מעצורים תרבותיים אך לא בהכרח יהיה מושפע מאחרים', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (16, 'העלאת ביטחון עצמי', 44, 'True', 'True', 'גורם לדמות להיות בעלת בטחון עצמי גבוה ולעשות דברים ללא מחשבה רבה', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (17, 'נוח להשפעה', 8, 'True', 'True', 'המושפע הופך לנוח להשפעה בידי אחרים', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (18, 'שכחה', 9, 'True', 'False', 'המושפע ישכח חלק מסוים במאורעות', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (19, 'הרגעה פיזית', 10, 'True', 'True', 'מרגיעה פציעות פיזיות או השפעות פיזיות מסויימות', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (20, 'עיוורון', 11, 'True', 'False', 'גורם לפגיעה בחוש הראיה', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (21, 'גירוד', 12, 'True', 'True', 'הדמות תחל להתגרד באופן בלתי נשלט', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (22, 'שיתוק', 13, 'True', 'True', 'גורם לשיתוק פיזי', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (23, 'ממריץ', 14, 'True', 'True', 'גורם להמרצה פיזית של הדמות, אנרגטיות רבה', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (24, 'הרדמה', 15, 'True', 'True', 'גורם לעייפות פיזית אצל הדמות ורצון לשינה', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (25, 'השפעה על חיות', 19, 'True', 'False', 'גורם לשיקוי להשפיע על חיות באופן ברור יותר או על עור', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (26, 'השפעה על מתכות', 16, 'True', 'False', 'על פי תכונות השיקוי מחזק מתכת או פוגע בה', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (27, 'השפעה על צמחים', 17, 'True', 'False', 'לפי תכונות השיקוי הורג צמחיה או עוזר לה', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (28, 'חימום', 24, 'True', 'True', 'חימום של חומרים, חפצים וגורמים חיים', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (29, 'קירור', 25, 'True', 'True', 'הקפאה וקירור של חומרים שנוגע בהם (מקפיא שחקנים במקום, מקרר צמחים, גורם לצמרמורות וכד'')', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (30, 'ממכר', 26, 'True', 'True', 'גורם להתמכרות', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (31, 'מחליש', 37, 'True', 'True', 'החלשה פיזי או נפשי של הדמות או החפץ', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (32, 'רעיל', 2, 'True', 'True', 'השיקוי רעיל ועלול להרוג', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (33, 'נוגד רעלים', 1, 'True', 'True', 'השיקוי נוגד רעלים', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (34, 'דליק', 46, 'True', 'True', 'החומר דליק/נפיץ במיוחד', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (35, 'חומציות', 41, 'True', 'True', 'החומר הוא חומצי. מלבין חומרים, גורם לצריבה על העור ואף יכול להפוך לחומצה חזקה ולהמיס דברים', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (36, 'מחטא', 42, 'True', 'False', 'השיקוי מסוגל לחטא פצעים', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (37, 'מזרז החלמה', 43, 'True', 'True', 'גורם להחלמה הטבעית של הגוף להתגבר בקצב שלה', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (38, 'מתמשך', 45, 'True', 'True', 'תופעות השיקוי מתמשכות', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (39, 'מעכב החלמה', 47, 'True', 'True', 'מעכב את ההחלמה הטבעית של הגוף', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (40, 'רגשיות', 34, 'True', 'True', 'גורם לרגשיות חזקה אצל האדם', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (41, 'בחילה', 48, 'True', 'True', '', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (42, 'אגרסיביות', 27, 'True', 'True', 'גורם לאגרסיביות אצל אנשים ודברים חיים', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (43, 'איטיות מחשבה', 49, 'False', 'False', 'איטיות של תהליכים מחשבתיים. מוריד סף להשפעה חיצונית', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (44, 'הזיות', 50, 'True', 'True', 'הזיות בדרגות שונות', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (45, 'השפעה על אלמנטים', 23, 'True', 'False', 'השיקוי משפיע על אלמטים - אש, אויר וכד''', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (46, 'השפעה על מינראלים', 18, 'True', 'False', 'השיקוי משפיע על מינראלים (מפורר, מחזק אבנים וכד'') על פי תכונות', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (47, 'זמן', 68, 'True', 'False', 'גורם לשינויים שקשורים לזמן - מזקן, מצעיר, גורם לריקבון, גורם לאוכל להישאר טוב יותר זמן וכד''', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (48, 'חוסר שליטה', 51, 'True', 'False', 'הדמות מתקשה לשלוט על הפעולות. מקל על שליטה על ידי אחרים אך פחות מ"נוח להשפעה"', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (49, 'חיבור קוסמי', 63, 'True', 'True', 'גורם לחומר להיות מקושר למאגר הקסם העולמי', 'ידע מאסטרים');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (50, 'טרנספורמציה', 61, 'True', 'False', 'משנה את האופי של מקבל השיקוי באופן מהותי - אפשר להוסיף חומר נוסף', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (51, 'יובש', 52, 'True', 'False', 'גורם להתייבשות ולהשפעות הנלוות ממנה', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (52, 'כאב', 53, 'True', 'False', 'גורם לכאב אצל הדמות', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (53, 'מגדיל', 54, 'True', 'True', 'מגדיל את מה ששמים עליו את השיקוי', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (54, 'מחזק', 40, 'True', 'True', 'חיזוק פיזי או נפשי של הדמות או החפץ', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (55, 'מנטרל קסם', 64, 'True', 'True', 'מנטרל השפעות של קסם', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (56, 'מקטין', 55, 'True', 'True', 'מקטין את מה ששמים עליו את השיקוי', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (57, 'מתגבר', 56, 'True', 'True', 'גורם לתגובה מועצמת של חלק ממאפיני השיקוי לאורך זמן. ככל שעובר יותר זמן ההשפעות מתחזקות', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (58, 'קשיי נשימה', 58, 'True', 'False', '', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (59, 'רעידות', 59, 'True', 'True', 'גורם לרעידות', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (60, 'שובע', 60, 'True', 'False', '', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (61, 'שלשולים', 69, 'True', 'True', '', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (62, 'שמנוני', 57, 'True', 'False', 'החומר הוא שמנוני באופי שלו. גורם לחומר להישאר על הגוף לאחר השימוש', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (63, 'פחד', 33, 'True', 'True', 'גורם לפחד אז אצל הדמות (היסטריה)', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (64, 'חרדה', 32, 'True', 'False', '', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (65, 'דיכאון', 30, 'True', 'False', '', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (66, 'שנאה', 31, 'True', 'False', '', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (67, 'אהבה', 28, 'True', 'False', '', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (68, 'השפעה על אש', 21, 'True', 'False', '', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (69, 'השפעה על אויר', 22, 'True', 'False', '', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (70, 'השפעה על נוזלים', 20, 'True', 'False', '', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (71, 'שמחה', 29, 'True', 'False', '', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (72, 'מחליש פיזית', 35, 'True', 'True', '', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (73, 'מחליש נפשית', 36, 'True', 'True', '', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (74, 'מחזק פיזית', 38, 'True', 'True', '', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (75, 'מחזק נפשית', 39, 'True', 'True', '', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (76, 'מצעיר', 65, 'True', 'False', 'גורם לדמות להיות צעירה יותר - זמן מוגבל', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (77, 'מזקן', 66, 'True', 'False', 'גורם לדמות להיות זקנה יותר - זמן מוגבל', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (78, 'זליגת חושים (סינסתזיה)', 4, 'True', 'False', 'חושים מתבלבלים - שמיעה הופכת לריח וכד''.', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (79, 'השהיית השפעות', 70, 'True', 'True', 'השיקוי פועל בקצב איטי מכרגיל ולהשפעה שלו לוקח זמן רב יותר להתחיל לפעול', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (80, 'הרגעת חומר', 71, 'True', 'True', 'גורם לחומר להיות פסיבי יותר בתגובות שלו (לא מחליש אותן). מתנגד לדליק וחומציות', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (81, '- פיצוץ -', 86, 'False', 'False', 'השיקוי שההשפעה הזאת נמצאת בתוכו מתפוצץ!', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (82, '- נעול -', 72, 'False', 'False', 'השילוב הזה נעול במשחק הנוכחי', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (83, '- לא פעיל -', 73, 'False', 'False', 'לשילוב הזה אין השפעה על השיקוי', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (84, 'איבוד אוריינטציית זמן', 67, 'True', 'False', 'האדם לא מצליח להחליט אם הוא בעבר בהווה או בעתיד', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (85, 'חיבור קוסמי - חיים', 62, 'True', 'False', 'מחבר את הדמות למעגל הקסם הבסיסי של החיים.', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (86, 'משקל', 74, 'True', 'False', 'גורם לשינוי במשקל של החומר עצמו, החומר שבו נוגע השיקוי או הדמות ששותה את השיקוי', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (87, 'ספיגה', 75, 'True', 'False', 'גורם לחומר לספוג חומרים אחרים או הליספג בקלות בחומרים אחרים', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (88, 'כבדות', 76, 'True', 'False', 'הגורם נהיה כבד יותר. הן משקלית והן בהרגשה', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (89, 'קלילות', 78, 'True', 'False', 'הגורם נהיה קל יותר. הן במשקל והן בהרגשה', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (90, 'השפעה על דם', 79, 'True', 'False', 'השיקוי ישפיע על דם', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (91, 'רעיל לבני אדם בלבד', 77, 'True', 'False', 'כולל אלפים אפלים', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (92, 'רעיל לאלפים בלבד', 80, 'True', 'False', 'אלפים רמים, יער, ים ואנשי לטאה', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (93, 'רעיל לבטאל בלבד (שייף + לונג שה)', 81, 'True', 'False', 'שייף + לונג שה', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (94, 'טרנספורמציה לאדם', 82, 'True', 'False', 'נותן תכונות ומאפיינים של בן אדם לפי עוצמה.', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (95, 'טרנספורמציה לאלף', 83, 'True', 'False', 'נותן תכונות ומאפיינים של אלף לפי עוצמה.', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (96, 'טרנספורמציה לבטאל', 84, 'True', 'False', 'נותן תכונות ומאפיינים של בטאל לפי עוצמה (כמו התחלת קרניים).', '');
+
+INSERT INTO Effects (`ID`, `Name`, `Power`, `Commulative`, `Has_Counter`, `Description`, `Comment`) VALUES (97, 'ממתן התמכרות', 85, 'True', 'True', 'ממתן את ההשפעה של התמכרות, משהה את פעילות ואף מבטל אותה קליל', '');
+
+SET IDENTITY_INSERT `Effects` OFF;
+
+SET IDENTITY_INSERT `Ingredient` ON;
+
+INSERT INTO Ingredient (`ID`, `Name`, `Comment`) VALUES (1, 'תפרחת צל לילה', '');
+
+INSERT INTO Ingredient (`ID`, `Name`, `Comment`) VALUES (2, 'פטריות רעל', 'dfdgfdg');
+
+INSERT INTO Ingredient (`ID`, `Name`, `Comment`) VALUES (3, 'פקעת שושנה מדברית', '');
+
+INSERT INTO Ingredient (`ID`, `Name`, `Comment`) VALUES (4, 'עלי אלמוות הכסף', '');
+
+INSERT INTO Ingredient (`ID`, `Name`, `Comment`) VALUES (5, 'אצות מהביצות', '');
+
+INSERT INTO Ingredient (`ID`, `Name`, `Comment`) VALUES (6, 'לוטוס נהרות', '');
+
+INSERT INTO Ingredient (`ID`, `Name`, `Comment`) VALUES (7, 'קליפת אורן אדום', '');
+
+INSERT INTO Ingredient (`ID`, `Name`, `Comment`) VALUES (8, 'פחם', '');
+
+INSERT INTO Ingredient (`ID`, `Name`, `Comment`) VALUES (9, 'מלח', '');
+
+INSERT INTO Ingredient (`ID`, `Name`, `Comment`) VALUES (10, 'חוטר קקטוס סלמנדרה', '');
+
+INSERT INTO Ingredient (`ID`, `Name`, `Comment`) VALUES (11, 'שורש הברק', '');
+
+INSERT INTO Ingredient (`ID`, `Name`, `Comment`) VALUES (12, 'שרף עץ דבש', '');
+
+INSERT INTO Ingredient (`ID`, `Name`, `Comment`) VALUES (13, 'ניבי צפע חברבורות', '');
+
+INSERT INTO Ingredient (`ID`, `Name`, `Comment`) VALUES (14, 'רעל של נחש מעמקים', '');
+
+SET IDENTITY_INSERT `Ingredient` OFF;
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (17, 19, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (17, 33, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (17, 37, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (18, 34, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (18, 36, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (19, 35, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (19, 36, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (20, 12, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (20, 19, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (20, 43, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (20, 51, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (21, 23, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (21, 28, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (21, 38, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (22, 19, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (22, 49, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (22, 51, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (22, 62, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (23, 15, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (23, 32, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (23, 48, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (23, 57, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (24, 21, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (24, 23, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (24, 32, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (62, 13, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (62, 15, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (62, 17, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (62, 73, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (63, 19, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (63, 54, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (63, 37, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (63, 34, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (63, 57, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (64, 32, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (27, 27, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (27, 28, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (27, 42, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (28, 40, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (28, 15, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (28, 16, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (28, 30, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (64, 23, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (64, 64, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (64, 44, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (66, 23, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (30, 19, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (30, 33, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (30, 37, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (66, 42, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (66, 40, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (66, 74, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (67, 13, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (67, 17, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (67, 18, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (67, 23, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (67, 38, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (33, 26, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (33, 31, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (33, 35, '3');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (33, 59, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (34, 13, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (34, 18, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (34, 23, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (34, 38, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (34, 51, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (35, 12, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (35, 29, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (35, 75, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (35, 57, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (35, 62, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (36, 74, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (36, 33, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (36, 36, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (36, 39, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (37, 74, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (37, 35, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (37, 36, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (37, 37, '3');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (37, 47, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (38, 14, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (38, 17, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (38, 44, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (38, 57, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (38, 64, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (39, 32, '3');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (39, 14, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (39, 62, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (39, 51, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (39, 58, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (40, 32, '3');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (40, 22, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (40, 34, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (40, 57, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (41, 33, '3');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (41, 19, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (41, 20, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (41, 36, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (41, 37, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (42, 32, '4');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (42, 13, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (42, 24, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (42, 30, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (42, 42, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (43, 33, '4');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (43, 19, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (43, 37, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (43, 16, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (44, 33, '3');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (44, 74, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (44, 38, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (44, 34, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (44, 39, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (45, 15, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (45, 17, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (45, 73, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (45, 48, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (46, 32, '4');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (46, 13, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (46, 18, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (46, 44, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (46, 57, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (47, 70, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (47, 30, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (47, 38, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (47, 50, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (47, 55, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (48, 22, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (48, 72, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (48, 57, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (48, 59, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (49, 32, '5');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (49, 22, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (49, 41, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (49, 52, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (49, 59, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (50, 36, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (50, 37, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (50, 34, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (51, 19, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (51, 62, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (51, 51, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (52, 34, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (52, 57, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (53, 36, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (53, 34, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (53, 57, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (54, 74, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (54, 35, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (54, 37, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (54, 55, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (54, 47, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (55, 36, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (56, 32, '4');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (56, 21, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (56, 22, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (56, 41, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (56, 62, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (57, 54, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (57, 35, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (57, 37, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (57, 55, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (57, 84, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (58, 33, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (58, 19, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (58, 20, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (58, 42, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (58, 51, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (59, 45, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (59, 37, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (59, 16, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (59, 50, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (59, 85, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (60, 33, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (60, 44, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (60, 79, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (61, 32, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (61, 21, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (61, 23, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (61, 62, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (62, 51, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (65, 15, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (65, 71, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (65, 48, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (65, 62, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (66, 38, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (68, 12, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (68, 19, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (68, 43, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (68, 51, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (70, 13, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (70, 17, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (70, 21, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (70, 23, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (70, 42, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (71, 32, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (71, 86, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (71, 87, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (74, 17, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (74, 20, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (74, 44, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (74, 50, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (74, 49, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (73, 15, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (73, 23, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (73, 30, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (73, 31, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (73, 79, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (75, 17, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (75, 20, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (75, 63, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (75, 16, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (75, 44, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (76, 33, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (76, 31, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (76, 16, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (76, 41, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (76, 50, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (77, 27, '3');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (77, 45, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (77, 34, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (77, 51, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (78, 51, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (78, 34, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (78, 57, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (78, 28, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (79, 19, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (79, 44, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (79, 47, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (80, 45, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (80, 29, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (80, 38, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (81, 19, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (81, 20, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (81, 51, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (81, 62, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (82, 45, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (82, 28, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (82, 34, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (83, 27, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (83, 45, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (83, 28, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (83, 34, '4');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (83, 51, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (84, 15, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (84, 17, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (84, 51, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (84, 62, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (84, 55, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (85, 19, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (85, 42, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (85, 44, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (85, 47, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (86, 33, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (86, 28, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (86, 37, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (86, 34, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (86, 84, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (87, 33, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (87, 13, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (87, 19, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (87, 42, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (87, 44, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (88, 32, '4');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (88, 13, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (88, 24, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (88, 30, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (88, 42, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (89, 24, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (89, 34, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (89, 39, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (89, 52, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (90, 19, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (90, 51, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (90, 62, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (90, 49, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (91, 32, '5');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (91, 13, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (91, 15, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (91, 42, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (91, 54, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (92, 14, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (92, 15, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (92, 16, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (93, 12, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (93, 19, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (93, 55, '4');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (94, 28, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (94, 42, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (94, 36, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (94, 16, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (94, 57, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (95, 70, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (95, 37, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (95, 50, '3');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (95, 85, '3');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (95, 76, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (96, 31, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (96, 41, '3');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (96, 52, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (96, 97, '3');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (97, 16, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (97, 44, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (97, 49, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (97, 47, '2');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (98, 28, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (98, 34, '3');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (98, 51, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (98, 57, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (99, 34, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (99, 51, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (99, 57, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (100, 33, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (100, 48, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (100, 62, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (100, 95, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (101, 45, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (101, 29, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (101, 38, '3');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (101, 47, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (102, 26, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (102, 54, '5');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (102, 38, '6');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (102, 34, '1');
+
+INSERT INTO Potion_To_Effect (`Potion_ID`, `Effect_ID`, `Effect_Level`) VALUES (102, 44, '1');
+
+SET IDENTITY_INSERT `Potions` ON;
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (17, 'נוגד רעלים 1', 'השיקוי מבטל את השפעת רעלים מדרגה 1', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (18, 'כוהל אלכימי', 'משמש לחיטוי פצעים', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (19, 'חומר מלבין', 'נעשה שימוש בחומר זה ליצירת דפים לבנים', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (20, 'מרקחת הרגעה יבשה', 'מקל על דמויות הסובלות מהשפעות המערערות את עצביהן. רמת ההשפעה נתונה להחלטת השחקן, אך ככלל השיקוי יסייע במידה ניתנת להבחנה. דמות המצוייה במצב נפשי קשה או גבולי עלולה פשוט לאבד את הכרתה.
+העור של הדמות נהיה יבש והיא נהיית צמאה.', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (21, 'מרקחת חימום', '', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (22, 'שמן אתרי יבש', ' שמן בעל ניחוח נעים המשמש למגוון אירועים - בין אם לעיסוי מרגיע ובין אם לטקסי כוהנים.
+השחקן שנמרח בשמן זה נהיה צמא במיוחד.', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (23, 'רעל פטפטת בלתי נשלטת', 'הדמות מאבדת כל עכבה ומדברת בשטף תודעה מלא. בעזרת הכוונה עדינה נהוג להשתמש ברעל זה לתחקור שבויים, אם כי הוא איננו אמין במיוחד. השפעתו מתגברת ככל שהזמן עובר ואם לא יטופל ע"י נוגדן מתאים הקורבן ימות תוך יום.', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (24, 'רעל גרד', 'גורם לגירוד בלתי נשלט שמתגבר ככל שהזמן עובר ואם לא יטופל ע"י נוגדן מתאים הקורבן ימות תוך יום.
+', 'א.מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (62, 'סם אמת', 'הדמות אומרת את האמת לשלוש שאלות אשר נשאלות מיד לאחר תחילת השפעת השיקוי. כמו שהיא מבינה את האמת בכל מקרה', 'א.(רנדיר) מכאניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (63, 'מרקחת בריאות', 'אולי המרקחת המפורסמת ביותר, מסייעת ומרגיעה את הרקמות לאחר פציעה אלימה ומאפשרת לאלו שנפגעו לחזור לתפקד במהירות רבה. (מחזיר 1 נק"פ אבוד). ', 'א.(רנדיר) מכאניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (27, 'דשן', 'נעשה שימוש בחומר זה על מנת לגדל צמחי מרפא בגינות.', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (28, 'אופוריה (ממכר)', 'השיקוי מרפה את השרירים וגורם לחזיונות נעימים אשר שורים על הדמות למשך כעשר דקות. התחושה המרוממת מלווה בהעצמה אישית ונטייה לחשוב שהדמות מסוגלת להרבה יותר ממה שהיא באמת.', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (64, 'רעל פאניקה', 'הדמות חווה הזיות מן הזן הגרוע ביותר ומחפשת כל דבר שהוא להתחבא מאחוריו מפני החזיונות. השפעתו מתגברת ככל שהזמן עובר ואם לא יטופל ע"י נוגדן מתאים הקורבן ימות תוך שעה.', 'א.(רנדיר) מכאניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (30, 'נוגד רעלים 2', 'טיפות מרירות אשר מאפשרות לגוף להתנגד לרעלים פעילים ברמה 2.', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (66, 'שיקוי ברזרקרים', 'סוד טאנדרולי שמור היטב, המעניק ללוחמים אחוזי הטירוף מהצפון את חוסנם האגדי. מוסיף 2 נק"פ למשך שעה או הקרב הקרוב - מה שמגיע קודם.', 'א.(רנדיר) מכאניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (67, 'שכחה מקסימה', 'השיקוי מפריע למעבר זיכרון מהזמן הקצר לזמן הארוך, בנוסף הדמות תאמין שכל הסובבים אותה הם חברים טובים שלה. לאחר חצי שעה, הדמות תחווה בלקאאוט ולא תזכור מה קרה מרגע ששתתה את השיקוי.', 'עולם');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (33, 'חומצת מנעולים חלשה', 'חומצה לפריצת מנעולים רמה 1 ו-2 - לא עובד על מנעולים קסומים.
+שימשו בשיקוי זה על מנעול הורס אותו לחלוטין וניתן להתעלם ממנו. כל שיקוי מכיל מספיק חומצה למנעול יחיד.', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (34, 'שכחה יבשה', 'השיקוי מפריע למעבר זיכרון מהזמן הקצר לזמן הארוך. לאחר חצי שעה, הדמות תחווה בלקאאוט ולא תזכור מה קרה מרגע ששתתה את השיקוי.
+הדמות תהיה צמאה במיוחד לאחר 
+שתיית השיקוי.', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (35, 'שיקוי נגד לסם אמת', 'שיקוי זה מאפשר להתנגד להשפעות של שיקוי אמת. השיקוי מבטל שתייה של שיקוי אמת יחיד. שתייה של שיקוי אמת נוסף עדיין יפעיל כרגיל.
+הדמות מרגיע קור עז אחר לקיחת, היא תתקשה לרוץ או לבצע פעולות פיזיות עצימות.', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (36, 'סירופ מטהר', 'סירופ סמיך זה שואב את הרעל ממנת מזון או משקה יחידה ומבטל את השפעתו [ניתן להסיר את המדבקה]. למרבה הצער, הסירופ גם מריר מאוד ועל כן לעיתים רחוקות מישהו יהיה מוכן לאכול משהו שנמסך בו החומר.', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (37, 'שיקוי חידוש רקמות', 'השיקוי מתקן רקמות בגוף מת והופך אותן לתקינות. הגוף אינו מתחיל לפעול מחדש אלה הינו רק במצב תקין לחלוטין. לא מרפא פציעות חמורות שהיו לגופה.', 'דוקטור איוון הומניק');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (38, 'קיבעון מחשבתי', 'הדמות מפתחת קיבעון בלתי נשלטת לישות הבאה אותה היא פוגשת לאחר שלגמה את השיקוי המריר. קיבעון זה מתבטא לרוב ברכושנות וחרדת נטישה בלתי מוסברת. השפעת השיקוי פגה לאחר שהדמות עליה התקבעה יוצאת מטווח הראייה שלה ליותר מכמה דקות ולרוב מתחלפת בתיעוב עמוק.', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (39, 'רעל צמאון שלא ניתן להרוות', 'הרעל מסיר את יכולתה של הדמות לרוות שתייה ולרוב גורם לה להטביע את עצמה בהתקף טירוף. השפעתו מתגברת ככל שהזמן עובר ואם לא יטופל ע"י נוגדן מתאים הקורבן ימות תוך חצי שעה', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (40, 'רעל שיתוק', ' השיתוק מתחיל דקה לאחר שתיית הרעל, משתק את הידיים לאט וממשיך לשאר הגוף בשלושת הדקות שלאחר מכן. אם לא יטופל ע"י נוגדן מתאים הקורבן ימות תוך חצי שעה.', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (41, 'נוגד רעלים 3 מעוור', 'מרקחת הנמשחת מתחת לעיניים ומבטלת את השפעתו של רעל מעוצמה 3.
+אם זאת, הדמות אשר השיקוי נמרך עליה מאבדת לחלוטין את הראיה שלה למשך 15 דק''.', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (42, 'רעל שינה רעה ושחורה ', 'המורעל חווה כעס רב כלפי כל מי שלידו אך גם ישנוניות ואובדן אוריינטציה למשך דקה ולאחריה יירדם. אם לא יאבחנו את הרעל ויטפלו בו במהלך העשר דקות הבאות, תמות הדמות בשנתה.
+הדמות אינה אגרסיבית כאשר היא ישנה.', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (43, 'נוגד רעלים דרגה 4 ומעלה בטחון עצמי', 'תרחיף של תמציות רבות אשר לרוב נמזג עם תה חזק, ומבטל את השפעתם של רעלים מעוצמה 4.
+הדמות תרגיש חוסר דאגה למצבה האישי ולרעל אשר פגע בה.', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (44, 'חיסון כנגד הרעלה', 'חומר השוהה במערכת של הדמות למשך שבוע ימים. במידה והדמות מורעלת באופן כלשהו בזמן הרלוונטי, היא תקיא את הרעל ואת הנסיוב ותבטל את השפעת הרעל - לא משנה מה עוצמת הרעל.', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (45, 'היפנוזה', 'הופך את שותה השיקוי לנוח להשפעה למשך 15 דקות, ומאפשר למי שנתן לו את השיקוי לתת לו הוראה אחת פשוטה, אליה לא יוכל להתנגד.', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (46, 'רעל דיליריום', 'הדמות מאבדת כל קשר עם המציאות - הדמות מאבדת את ההקשר עם הזמן, המיקום והנוכחים באופן אקוטי ונוראי. השפעתו מתגברת ככל שהזמן עובר ואם לא יטופל ע"י נוגדן מתאים הקורבן ימות תוך עשר דקות מהתקף לב.', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (47, 'טוהר דם אלפי (ממכר)', '', 'ארנדיר');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (48, 'רופפות שרירים', 'השרירים של הדמות נהפכים לרופפים וחסרי כוח למשך 15 דק''. הדמות לא יכולה להילחם, לרוץ או לעשות עבודה פיזית כלשהי. היא יכולה ללכת לאט מאוד ובקושי או להעזר בשחקנית אחרת ולנוע במהירות רגילה.', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (49, 'רעל האנפה השחורה', 'הורג את הדמות תוך דקה אחת בלבד', 'א. מכניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (50, 'כוהל אדמאני', 'כוהל אלכימי אשר אפשר להשתמש בו לריפוי פציעות עבודה ללא צורך ברופא.', 'פרדריק מאדאמן');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (51, 'שמן לפירוזה', 'דרך חדשה לעשיית שמן אתרי יבש', 'פירוזה פלור');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (52, 'שורף הכאב של הקרוון', 'בעל תכונות של כוהל אלכימי ', 'דומי');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (53, 'כוהל אלכימי מתגבר', 'כוהל אלכימי אשר מתגבר עם הזמן. שימוש בחומר על הגוף לאורך זמן הופך הותו לדליק.', 'דומי מהקרוואן');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (54, 'חידוש רקמות קסם', 'פועל כמו חידוש רקמות של הדמות. אם זאת, יכול לחדש רקמות אשר פגועות באמצעים קסומים.', 'דר'' איוון הומניק');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (55, 'מחטא פירוזה', 'חומר מחטא לא דליק', 'פלור פירוזה ');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (56, 'גרדן יער', 'חומר שניתן למרוח על העור או לשתות אותו. גורם לבחילה ולגירודים בכל הגוף. לאחר מספר שניות של גירודים הגף משותק לחלוטין עד שכל הגוף משתתק.
+כמו כן הדמות תמות תוך 10 דק'' ללא טיפול.', 'קראקרא מבת''ול דואל');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (57, 'טיול בזמן', 'כאשר דמות שותה את השיקוי היא מרגישה לפתע שאינה יודעת האם היא נמצאת בעבר בהווה או בעתיד. לרגעים היא בטוחה שהיא בעברה, לעיתים היא בטוחה שהיא בהווה ולעיתים היא בטוחה שהיא בעתידה. למרות זאת היא לא משתגעת. הדמות עמידה בפני פציעות פיזיות וחסינה לקסמים.', '');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (58, 'שיקוי זמני', '', '');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (59, 'שיקוי ערפדות בסיסי', 'הדמות יכולה לשתות דם של דמות אחרת על מנת להחזיר נק"פ. הדמות אינה יכולה להשתמש ביכולת זו יותר משלוש פעמים. נגמר בלילה של אותו היום.', 'הקיסר החיוור');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (60, 'נוגד רעלים וגורם להזיות', 'נוגד רעלים רמה 1 אשר גורם להזיות תוך חצי שעה
+מזמן שתיית השיקוי', 'ספריה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (61, 'רעל גרד שמנוני', 'שמן זה גורם לגרד בלתי נשלט שמתגבר ככל שעובר הזמן. אם הקורבן לא יטופל ע"י נוגדן מתאים הוא ימות תוך יום.', 'ב. מכאניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (65, 'שיקוי ילדות', 'גורם לשותה להרגיש ולהתנהג כמו ילד למשך חצי שעה', 'א.(רנדיר) מכאניקה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (68, 'מרקחת הרגעה יבשה מחוזקת', 'מקל על דמויות הסובלות מהשפעות המערערות את עצביהן, גם אלו בעלות מום נפשי. רמת ההשפעה נתונה להחלטת השחקן, אך ככלל השיקוי יסייע במידה ניתנת להבחנה. דמות המצוייה במצב נפשי קשה או גבולי עלולה פשוט לאבד את הכרתה.
+העור של הדמות נהיה יבש והיא נהיית צמאה.', 'עולם');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (70, 'משקה אנרגיה משכר', 'השיקוי גורם למרץ ואגרסיביות, יחד עם בלבול וקלות שכנוע, ומאפשר לשכנע את המושפע לבצע מעשים אלימים שלא היה עושה אחרת. בא עם גירוד.', 'דבי');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (71, 'כספית', 'כספית הינו מוצר הנספג בחומרים אחרים עקב תכונותיו הנזוליות והכבדות.  אם זאת, לחומר זה תכונות רעילות מסוכנות.', 'עולם');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (74, 'קפיצת הדרך', 'חיבור קוסמי מאד חזק, הזיות חזקות, נוחות חהשפעה, עיוורון וטרנספורמציה.', 'אדלסיה נסקונדר ואדון גריי');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (73, 'ברק ורעם', 'הדמות נהיית מלאת אנרגיה, כוח ושמחת חיים למשך 10 דק''. לאחר מכן הדמות נהיית חלשה ועייפה למשך 10 דק'' נוספות. (ממכר)', 'עולם');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (75, 'קפיצת הדרך - חומרים', '', '');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (76, 'מרקחת בטחון שווא', 'מעלה מאד את הבטחון,
+נוגד רעלים, 
+אך מחליש, עושה בחילה
+וגם טרנספורמציוני', 'ניקולס פלמל');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (77, 'אבקה שחורה', 'אבדקה דליקה.
+נשרפת ונעלמת במהירות.
+אם מוסיפים אותה לאדמה, 
+המצחים שגדלים בה נראים שרופים.', 'אדון גריי ואיזולדה סרפיקו');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (78, 'אבקת שריפה פשוטה', 'אבקת שריפה פשוטה:
+חומר יבש ודליק
+מתגבר חימום', '');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (79, 'טראנס גיל', 'מכניס לטראנס רגוע 
+שבו הדמות חווה עצמה
+צעירה או זקנה ממה שהיא', 'שייד');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (80, 'שומר קור פשוט', 'כאשר מוסף לאלמנטים - שומר עליהם קרים למשך שעה', 'אדון גריי ואיזולדה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (81, 'שמן מרגיע', 'שמן מרגיע בשימוש חיצאני.
+יכול לגרום לפגיעה זמנית בראיה במגע בעיניים או שתיה.
+מייבש מעבר לרגיל. ניתן לשימוש כשמן אתרי', 'זאהיר מהשייף ואריאל מחובלי של לורליי');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (82, 'זרז בערה', 'משכה מזרזת בערה', 'קסטרינה לסקונדר ואיתילוון לימיר');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (83, 'מזרז בערה מתקדם', 'אבקה דליקה מאד מאד.
+במיוחד עבור צמחים ואלמנטים.', 'אדון גריי ואיזולדה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (84, 'סם אמת לפי המתכון?', '', '');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (85, 'טראנס גיל אגרסיבי', 'מי ששותה את השיקוי הופך למבוגר או צעיר יותר בגוף
+הוא נכנס לטראנס כעס
+אך הגוף שלו מרגיש כמו עיסה', 'שייד');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (86, 'בועת זמן מרפאת', 'מי ששותתה את השיקוי רואה את העבר, ההווה והעתיד יחדיו, חש בעירה פנימית, וכן מפסיק לסבול מכאבים ורעלים עד רמה 2.', 'אדון גריי ואיזולדה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (87, 'חמרמורת', 'הכל מציק לך כל דבר מעצבן אותך גם דברים שלא שם. בנוסף נוגד רעלים (2)', 'ניקולס פלאמה');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (88, 'רעל שינה רעה ושחורה', 'רעל רמה 4 
+הרעל מרדים תוך דקה.
+במידה ולא יטופל תוך עשר דקות גורם למוות', 'מוריה ווינפילד');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (89, 'אהבת אליזאן', 'השיקוי גורם לכאב, פוגע בהחחמת פציעות ומרדים. טוב לעיכוב לוחמים.', 'סקלפל');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (90, 'שמן אתרי', 'שמן בעל ניחוח נעים המשמש למגוון אירועים - בין אם לעיסוי מרגיע ובין אם לטקסי כוהנים.
+השחקן שנמרח בשמן זה נהיה צמא במיוחד.', '');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (91, 'עקרב שחור', 'רעל רמה 5
+לאחר הצריכה הקורבן יכנס למצב של שיגעון קרב ולאחר דקה יפול מת לרצפה', 'האב סבסטיאן');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (92, 'עוצמת הכסיל', 'אתה נתקף ברצון בלתי נשלט לרוץ לכיכר העיר ולתת דרשה חוצבת להבות על עליונותך בעולם', 'סקאלפל');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (93, 'העיכוב', 'השיקוי מונע השפעה של מגוון קסמים ואף החזקים שבהם.לא ניתן לבצע קסמים לבצע יצירה קסומה או להישתתף בטקסים למשך שעה. תחושה של רוגע ורפיון שורה עליך.', 'ויקטור');
+
+INSERT INTO Potions (`ID`, `Name`, `Description`, `Creator_Name`) VALUES (94, 'שמחה טנדרולית', 'ככל שעובר הזמן אתה מתחיך להיות יותר אגרסיבי ובטוח בעצמך. בנוסך ככל שעובר הזמן הגוף שלך מתחמם ואתה מאד
+...
+
+[Message clipped]  View entire message
+	
+Click here to Reply or Forward
+12.37 GB (82%) of 15 GB used
+Manage
+Terms · Privacy · Program Policies
+Last account activity: 0 minutes ago
+Open in 2 other locations · Details
+
+
+﻿CREATE TABLE [Counters]
 (
    [Effect_ID] INT NOT NULL,
    [Counter_ID] INT NOT NULL
@@ -6,7 +1243,7 @@ CREATE TABLE [Counters]
 
 CREATE TABLE [Effects]
 (
-   [ID] INT NOT NULL IDENTITY (109,1),
+   [ID] INT NOT NULL IDENTITY (98,1),
    [Name] NVARCHAR(100) NOT NULL,
    [Power] INT NOT NULL,
    [Commulative] BIT NOT NULL,
@@ -31,7 +1268,7 @@ CREATE TABLE [Potion_To_Effect]
 
 CREATE TABLE [Potions]
 (
-   [ID] INT NOT NULL IDENTITY (110,1),
+   [ID] INT NOT NULL IDENTITY (103,1),
    [Name] NVARCHAR(100) NOT NULL,
    [Description] NVARCHAR(500),
    [Creator_Name] NVARCHAR(100)
@@ -61,7 +1298,7 @@ CREATE TABLE [Products_To_Effects]
 
 CREATE TABLE [Specials]
 (
-   [ID] INT NOT NULL IDENTITY (39,1),
+   [ID] INT NOT NULL IDENTITY (32,1),
    [Name] NVARCHAR(100) NOT NULL,
    [Power] INT NOT NULL,
    [Comment] NVARCHAR(100)
@@ -190,209 +1427,179 @@ INSERT INTO [Counters] ([Effect_ID], [Counter_ID]) VALUES (97, 30);
 
 INSERT INTO [Counters] ([Effect_ID], [Counter_ID]) VALUES (30, 97);
 
-INSERT INTO [Counters] ([Effect_ID], [Counter_ID]) VALUES (99, 16);
-
-INSERT INTO [Counters] ([Effect_ID], [Counter_ID]) VALUES (16, 99);
-
-INSERT INTO [Counters] ([Effect_ID], [Counter_ID]) VALUES (13, 100);
-
-INSERT INTO [Counters] ([Effect_ID], [Counter_ID]) VALUES (100, 13);
-
 SET IDENTITY_INSERT [Effects] ON;
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (12, 'מאזן נפשית', 6, 'True', 'True', 'מרגיעה נפשית, מתנגד להשפעות נפשיות מסויימות', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (12, 'מאזן נפשית', 3, 'True', 'True', 'מרגיעה נפשית, מתנגד להשפעות נפשיות מסויימות', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (13, 'בלבול', 8, 'True', 'True', 'בלבול מנטלי, חומר כיוון, מחשבות מבולבלות. מוריד סף להשפעה חיצונית', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (13, 'בלבול', 5, 'True', 'True', 'בלבול מנטלי, חומר כיוון, מחשבות מבולבלות. מוריד סף להשפעה חיצונית', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (14, 'אובססיביות', 10, 'False', 'True', 'גורם לאובססיה לגבי אנשים, חפצים או דברים כלליים', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (14, 'אובססיביות', 6, 'False', 'True', 'גורם לאובססיה לגבי אנשים, חפצים או דברים כלליים', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (15, 'מבטל עכבות', 11, 'True', 'True', 'מוריד חסמים נפשיים של הדמות מלעשות פעולות. המושפע יפעל ללא מעצורים תרבותיים אך לא בהכרח יהיה מושפע מאחרים', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (15, 'מבטל עכבות', 7, 'True', 'True', 'מוריד חסמים נפשיים של הדמות מלעשות פעולות. המושפע יפעל ללא מעצורים תרבותיים אך לא בהכרח יהיה מושפע מאחרים', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (16, 'העלאת ביטחון עצמי', 57, 'True', 'True', 'גורם לדמות להיות בעלת בטחון עצמי גבוה ולעשות דברים ללא מחשבה רבה', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (16, 'העלאת ביטחון עצמי', 44, 'True', 'True', 'גורם לדמות להיות בעלת בטחון עצמי גבוה ולעשות דברים ללא מחשבה רבה', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (17, 'נוח להשפעה', 12, 'True', 'True', 'המושפע הופך לנוח להשפעה בידי אחרים', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (17, 'נוח להשפעה', 8, 'True', 'True', 'המושפע הופך לנוח להשפעה בידי אחרים', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (18, 'שכחה', 13, 'True', 'False', 'המושפע ישכח חלק מסוים במאורעות', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (18, 'שכחה', 9, 'True', 'False', 'המושפע ישכח חלק מסוים במאורעות', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (19, 'הרגעה פיזית', 14, 'True', 'True', 'מרגיעה פציעות פיזיות או השפעות פיזיות מסויימות', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (19, 'הרגעה פיזית', 10, 'True', 'True', 'מרגיעה פציעות פיזיות או השפעות פיזיות מסויימות', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (20, 'עיוורון', 15, 'True', 'False', 'גורם לפגיעה בחוש הראיה', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (20, 'עיוורון', 11, 'True', 'False', 'גורם לפגיעה בחוש הראיה', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (21, 'גירוד', 17, 'True', 'True', 'הדמות תחל להתגרד באופן בלתי נשלט', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (21, 'גירוד', 12, 'True', 'True', 'הדמות תחל להתגרד באופן בלתי נשלט', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (22, 'שיתוק', 18, 'True', 'True', 'גורם לשיתוק פיזי', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (22, 'שיתוק', 13, 'True', 'True', 'גורם לשיתוק פיזי', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (23, 'ממריץ', 19, 'True', 'True', 'גורם להמרצה פיזית של הדמות, אנרגטיות רבה', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (23, 'ממריץ', 14, 'True', 'True', 'גורם להמרצה פיזית של הדמות, אנרגטיות רבה', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (24, 'הרדמה', 20, 'True', 'True', 'גורם לעייפות פיזית אצל הדמות ורצון לשינה', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (24, 'הרדמה', 15, 'True', 'True', 'גורם לעייפות פיזית אצל הדמות ורצון לשינה', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (25, 'השפעה על חיות', 25, 'True', 'False', 'גורם לשיקוי להשפיע על חיות באופן ברור יותר או על עור', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (25, 'השפעה על חיות', 19, 'True', 'False', 'גורם לשיקוי להשפיע על חיות באופן ברור יותר או על עור', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (26, 'השפעה על מתכות', 21, 'True', 'False', 'על פי תכונות השיקוי מחזק מתכת או פוגע בה', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (26, 'השפעה על מתכות', 16, 'True', 'False', 'על פי תכונות השיקוי מחזק מתכת או פוגע בה', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (27, 'השפעה על צמחים', 22, 'True', 'False', 'לפי תכונות השיקוי הורג צמחיה או עוזר לה', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (27, 'השפעה על צמחים', 17, 'True', 'False', 'לפי תכונות השיקוי הורג צמחיה או עוזר לה', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (28, 'חימום', 32, 'True', 'True', 'חימום של חומרים, חפצים וגורמים חיים', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (28, 'חימום', 24, 'True', 'True', 'חימום של חומרים, חפצים וגורמים חיים', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (29, 'קירור', 33, 'True', 'True', 'הקפאה וקירור של חומרים שנוגע בהם (מקפיא שחקנים במקום, מקרר צמחים, גורם לצמרמורות וכד'')', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (29, 'קירור', 25, 'True', 'True', 'הקפאה וקירור של חומרים שנוגע בהם (מקפיא שחקנים במקום, מקרר צמחים, גורם לצמרמורות וכד'')', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (30, 'ממכר', 35, 'True', 'True', 'גורם להתמכרות', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (30, 'ממכר', 26, 'True', 'True', 'גורם להתמכרות', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (31, 'מחליש', 46, 'True', 'True', 'החלשה פיזי או נפשי של הדמות או החפץ', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (31, 'מחליש', 37, 'True', 'True', 'החלשה פיזי או נפשי של הדמות או החפץ', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (32, 'רעיל', 5, 'True', 'True', 'השיקוי רעיל ועלול להרוג', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (32, 'רעיל', 2, 'True', 'True', 'השיקוי רעיל ועלול להרוג', '');
 
 INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (33, 'נוגד רעלים', 1, 'True', 'True', 'השיקוי נוגד רעלים', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (34, 'דליק', 60, 'True', 'True', 'החומר דליק/נפיץ במיוחד', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (34, 'דליק', 46, 'True', 'True', 'החומר דליק/נפיץ במיוחד', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (35, 'חומציות', 50, 'True', 'True', 'החומר הוא חומצי. מלבין חומרים, גורם לצריבה על העור ואף יכול להפוך לחומצה חזקה ולהמיס דברים', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (35, 'חומציות', 41, 'True', 'True', 'החומר הוא חומצי. מלבין חומרים, גורם לצריבה על העור ואף יכול להפוך לחומצה חזקה ולהמיס דברים', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (36, 'מחטא', 51, 'True', 'False', 'השיקוי מסוגל לחטא פצעים', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (36, 'מחטא', 42, 'True', 'False', 'השיקוי מסוגל לחטא פצעים', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (37, 'מזרז החלמה', 53, 'True', 'True', 'גורם להחלמה הטבעית של הגוף להתגבר בקצב שלה', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (37, 'מזרז החלמה', 43, 'True', 'True', 'גורם להחלמה הטבעית של הגוף להתגבר בקצב שלה', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (38, 'מתמשך', 58, 'True', 'True', 'תופעות השיקוי מתמשכות', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (38, 'מתמשך', 45, 'True', 'True', 'תופעות השיקוי מתמשכות', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (39, 'מעכב החלמה', 52, 'True', 'True', 'מעכב את ההחלמה הטבעית של הגוף', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (39, 'מעכב החלמה', 47, 'True', 'True', 'מעכב את ההחלמה הטבעית של הגוף', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (40, 'רגשיות', 43, 'True', 'True', 'גורם לרגשיות חזקה אצל האדם', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (40, 'רגשיות', 34, 'True', 'True', 'גורם לרגשיות חזקה אצל האדם', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (41, 'בחילה', 61, 'True', 'True', '', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (41, 'בחילה', 48, 'True', 'True', '', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (42, 'אגרסיביות', 36, 'True', 'True', 'גורם לאגרסיביות אצל אנשים ודברים חיים', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (42, 'אגרסיביות', 27, 'True', 'True', 'גורם לאגרסיביות אצל אנשים ודברים חיים', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (43, 'איטיות מחשבה', 62, 'False', 'False', 'איטיות של תהליכים מחשבתיים. מוריד סף להשפעה חיצונית', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (43, 'איטיות מחשבה', 49, 'False', 'False', 'איטיות של תהליכים מחשבתיים. מוריד סף להשפעה חיצונית', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (44, 'הזיות', 63, 'True', 'True', 'הזיות בדרגות שונות', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (44, 'הזיות', 50, 'True', 'True', 'הזיות בדרגות שונות', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (45, 'השפעה על אלמנטים', 30, 'True', 'False', 'השיקוי משפיע על אלמטים - אש, אויר וכד''', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (45, 'השפעה על אלמנטים', 23, 'True', 'False', 'השיקוי משפיע על אלמטים - אש, אויר וכד''', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (46, 'השפעה על מינראלים', 24, 'True', 'False', 'השיקוי משפיע על מינראלים (מפורר, מחזק אבנים וכד'') על פי תכונות', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (46, 'השפעה על מינראלים', 18, 'True', 'False', 'השיקוי משפיע על מינראלים (מפורר, מחזק אבנים וכד'') על פי תכונות', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (47, 'זמן', 86, 'True', 'False', 'גורם לשינויים שקשורים לזמן - מזקן, מצעיר, גורם לריקבון, גורם לאוכל להישאר טוב יותר זמן וכד''', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (47, 'זמן', 68, 'True', 'False', 'גורם לשינויים שקשורים לזמן - מזקן, מצעיר, גורם לריקבון, גורם לאוכל להישאר טוב יותר זמן וכד''', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (48, 'חוסר שליטה', 64, 'True', 'False', 'הדמות מתקשה לשלוט על הפעולות. מקל על שליטה על ידי אחרים אך פחות מ"נוח להשפעה"', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (48, 'חוסר שליטה', 51, 'True', 'False', 'הדמות מתקשה לשלוט על הפעולות. מקל על שליטה על ידי אחרים אך פחות מ"נוח להשפעה"', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (49, 'חיבור קוסמי', 81, 'True', 'True', 'גורם לחומר להיות מקושר למאגר הקסם העולמי', 'ידע מאסטרים');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (49, 'חיבור קוסמי', 63, 'True', 'True', 'גורם לחומר להיות מקושר למאגר הקסם העולמי', 'ידע מאסטרים');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (50, 'טרנספורמציה', 78, 'True', 'False', 'משנה את האופי של מקבל השיקוי באופן מהותי - אפשר להוסיף חומר נוסף', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (50, 'טרנספורמציה', 61, 'True', 'False', 'משנה את האופי של מקבל השיקוי באופן מהותי - אפשר להוסיף חומר נוסף', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (51, 'יובש', 65, 'True', 'False', 'גורם להתייבשות ולהשפעות הנלוות ממנה', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (51, 'יובש', 52, 'True', 'False', 'גורם להתייבשות ולהשפעות הנלוות ממנה', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (52, 'כאב', 66, 'True', 'False', 'גורם לכאב אצל הדמות', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (52, 'כאב', 53, 'True', 'False', 'גורם לכאב אצל הדמות', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (53, 'מגדיל', 67, 'True', 'True', 'מגדיל את מה ששמים עליו את השיקוי', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (53, 'מגדיל', 54, 'True', 'True', 'מגדיל את מה ששמים עליו את השיקוי', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (54, 'מחזק', 49, 'True', 'True', 'חיזוק פיזי או נפשי של הדמות או החפץ', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (54, 'מחזק', 40, 'True', 'True', 'חיזוק פיזי או נפשי של הדמות או החפץ', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (55, 'מנטרל קסם', 82, 'True', 'True', 'מנטרל השפעות של קסם', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (55, 'מנטרל קסם', 64, 'True', 'True', 'מנטרל השפעות של קסם', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (56, 'מקטין', 68, 'True', 'True', 'מקטין את מה ששמים עליו את השיקוי', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (56, 'מקטין', 55, 'True', 'True', 'מקטין את מה ששמים עליו את השיקוי', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (57, 'מתגבר', 69, 'True', 'True', 'גורם לתגובה מועצמת של חלק ממאפיני השיקוי לאורך זמן. ככל שעובר יותר זמן ההשפעות מתחזקות', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (57, 'מתגבר', 56, 'True', 'True', 'גורם לתגובה מועצמת של חלק ממאפיני השיקוי לאורך זמן. ככל שעובר יותר זמן ההשפעות מתחזקות', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (58, 'קשיי נשימה', 71, 'True', 'False', '', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (58, 'קשיי נשימה', 58, 'True', 'False', '', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (59, 'רעידות', 72, 'True', 'True', 'גורם לרעידות', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (59, 'רעידות', 59, 'True', 'True', 'גורם לרעידות', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (60, 'שובע', 73, 'True', 'False', '', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (60, 'שובע', 60, 'True', 'False', '', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (61, 'שלשולים', 87, 'True', 'True', '', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (61, 'שלשולים', 69, 'True', 'True', '', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (62, 'שמנוני', 70, 'True', 'False', 'החומר הוא שמנוני באופי שלו. גורם לחומר להישאר על הגוף לאחר השימוש', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (62, 'שמנוני', 57, 'True', 'False', 'החומר הוא שמנוני באופי שלו. גורם לחומר להישאר על הגוף לאחר השימוש', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (63, 'פחד', 42, 'True', 'True', 'גורם לפחד אז אצל הדמות (היסטריה)', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (63, 'פחד', 33, 'True', 'True', 'גורם לפחד אז אצל הדמות (היסטריה)', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (64, 'חרדה', 41, 'True', 'False', '', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (64, 'חרדה', 32, 'True', 'False', '', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (65, 'דיכאון', 39, 'True', 'False', '', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (65, 'דיכאון', 30, 'True', 'False', '', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (66, 'שנאה', 40, 'True', 'False', '', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (66, 'שנאה', 31, 'True', 'False', '', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (67, 'אהבה', 37, 'True', 'False', '', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (67, 'אהבה', 28, 'True', 'False', '', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (68, 'השפעה על אש', 28, 'True', 'False', '', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (68, 'השפעה על אש', 21, 'True', 'False', '', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (69, 'השפעה על אויר', 29, 'True', 'False', '', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (69, 'השפעה על אויר', 22, 'True', 'False', '', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (70, 'השפעה על נוזלים', 27, 'True', 'False', '', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (70, 'השפעה על נוזלים', 20, 'True', 'False', '', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (71, 'שמחה', 38, 'True', 'False', '', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (71, 'שמחה', 29, 'True', 'False', '', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (72, 'מחליש פיזית', 44, 'True', 'True', '', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (72, 'מחליש פיזית', 35, 'True', 'True', '', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (73, 'מחליש נפשית', 45, 'True', 'True', '', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (73, 'מחליש נפשית', 36, 'True', 'True', '', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (74, 'מחזק פיזית', 47, 'True', 'True', '', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (74, 'מחזק פיזית', 38, 'True', 'True', '', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (75, 'מחזק נפשית', 48, 'True', 'True', '', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (75, 'מחזק נפשית', 39, 'True', 'True', '', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (76, 'מצעיר', 83, 'True', 'False', 'גורם לדמות להיות צעירה יותר - זמן מוגבל', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (76, 'מצעיר', 65, 'True', 'False', 'גורם לדמות להיות צעירה יותר - זמן מוגבל', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (77, 'מזקן', 84, 'True', 'False', 'גורם לדמות להיות זקנה יותר - זמן מוגבל', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (77, 'מזקן', 66, 'True', 'False', 'גורם לדמות להיות זקנה יותר - זמן מוגבל', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (78, 'זליגת חושים (סינסתזיה)', 7, 'True', 'False', 'חושים מתבלבלים - שמיעה הופכת לריח וכד''.', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (78, 'זליגת חושים (סינסתזיה)', 4, 'True', 'False', 'חושים מתבלבלים - שמיעה הופכת לריח וכד''.', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (79, 'השהיית השפעות', 88, 'True', 'True', 'השיקוי פועל בקצב איטי מכרגיל ולהשפעה שלו לוקח זמן רב יותר להתחיל לפעול', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (79, 'השהיית השפעות', 70, 'True', 'True', 'השיקוי פועל בקצב איטי מכרגיל ולהשפעה שלו לוקח זמן רב יותר להתחיל לפעול', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (80, 'הרגעת חומר', 89, 'True', 'True', 'גורם לחומר להיות פסיבי יותר בתגובות שלו (לא מחליש אותן). מתנגד לדליק וחומציות', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (80, 'הרגעת חומר', 71, 'True', 'True', 'גורם לחומר להיות פסיבי יותר בתגובות שלו (לא מחליש אותן). מתנגד לדליק וחומציות', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (81, '- פיצוץ -', 95, 'False', 'False', 'השיקוי שההשפעה הזאת נמצאת בתוכו מתפוצץ!', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (81, '- פיצוץ -', 86, 'False', 'False', 'השיקוי שההשפעה הזאת נמצאת בתוכו מתפוצץ!', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (82, '- נעול -', 96, 'False', 'False', 'השילוב הזה נעול במשחק הנוכחי', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (82, '- נעול -', 72, 'False', 'False', 'השילוב הזה נעול במשחק הנוכחי', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (83, '- לא פעיל -', 97, 'False', 'False', 'לשילוב הזה אין השפעה על השיקוי', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (83, '- לא פעיל -', 73, 'False', 'False', 'לשילוב הזה אין השפעה על השיקוי', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (84, 'איבוד אוריינטציית זמן', 85, 'True', 'False', 'האדם לא מצליח להחליט אם הוא בעבר בהווה או בעתיד', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (84, 'איבוד אוריינטציית זמן', 67, 'True', 'False', 'האדם לא מצליח להחליט אם הוא בעבר בהווה או בעתיד', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (85, 'חיבור קוסמי - חיים', 79, 'True', 'False', 'מחבר את הדמות למעגל הקסם הבסיסי של החיים.', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (85, 'חיבור קוסמי - חיים', 62, 'True', 'False', 'מחבר את הדמות למעגל הקסם הבסיסי של החיים.', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (86, 'משקל', 92, 'True', 'False', 'גורם לשינוי במשקל של החומר עצמו, החומר שבו נוגע השיקוי או הדמות ששותה את השיקוי', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (86, 'משקל', 74, 'True', 'False', 'גורם לשינוי במשקל של החומר עצמו, החומר שבו נוגע השיקוי או הדמות ששותה את השיקוי', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (87, 'ספיגה', 93, 'True', 'False', 'גורם לחומר לספוג חומרים אחרים או הליספג בקלות בחומרים אחרים', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (87, 'ספיגה', 75, 'True', 'False', 'גורם לחומר לספוג חומרים אחרים או הליספג בקלות בחומרים אחרים', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (88, 'כבדות', 90, 'True', 'False', 'הגורם נהיה כבד יותר. הן משקלית והן בהרגשה', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (88, 'כבדות', 76, 'True', 'False', 'הגורם נהיה כבד יותר. הן משקלית והן בהרגשה', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (89, 'קלילות', 91, 'True', 'False', 'הגורם נהיה קל יותר. הן במשקל והן בהרגשה', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (89, 'קלילות', 78, 'True', 'False', 'הגורם נהיה קל יותר. הן במשקל והן בהרגשה', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (90, 'השפעה על דם', 26, 'True', 'False', 'השיקוי ישפיע על דם', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (90, 'השפעה על דם', 79, 'True', 'False', 'השיקוי ישפיע על דם', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (91, 'רעיל לבני אדם בלבד', 2, 'True', 'False', 'כולל אלפים אפלים', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (91, 'רעיל לבני אדם בלבד', 77, 'True', 'False', 'כולל אלפים אפלים', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (92, 'רעיל לאלפים בלבד', 3, 'True', 'False', 'אלפים רמים, יער, ים ואנשי לטאה', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (92, 'רעיל לאלפים בלבד', 80, 'True', 'False', 'אלפים רמים, יער, ים ואנשי לטאה', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (93, 'רעיל לבטאל בלבד (שייף + לונג שה)', 4, 'True', 'False', 'שייף + לונג שה', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (93, 'רעיל לבטאל בלבד (שייף + לונג שה)', 81, 'True', 'False', 'שייף + לונג שה', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (94, 'טרנספורמציה לאדם', 74, 'True', 'False', 'נותן תכונות ומאפיינים של בן אדם לפי עוצמה.', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (94, 'טרנספורמציה לאדם', 82, 'True', 'False', 'נותן תכונות ומאפיינים של בן אדם לפי עוצמה.', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (95, 'טרנספורמציה לאלף', 75, 'True', 'False', 'נותן תכונות ומאפיינים של אלף לפי עוצמה.', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (95, 'טרנספורמציה לאלף', 83, 'True', 'False', 'נותן תכונות ומאפיינים של אלף לפי עוצמה.', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (96, 'טרנספורמציה לבטאל', 76, 'True', 'False', 'נותן תכונות ומאפיינים של בטאל לפי עוצמה (כמו התחלת קרניים).', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (96, 'טרנספורמציה לבטאל', 84, 'True', 'False', 'נותן תכונות ומאפיינים של בטאל לפי עוצמה (כמו התחלת קרניים).', '');
 
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (97, 'ממתן התמכרות', 34, 'True', 'True', 'ממתן את ההשפעה של התמכרות, משהה את פעילות ואף מבטל אותה קליל', '');
-
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (98, 'אטימות', 94, 'False', 'False', '', '');
-
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (99, 'הורדת בטחון עצמי', 55, 'False', 'True', 'גורם לדמות להיות בעלת בטחון עצמי נמוך עד אפסי', '');
-
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (100, 'מיקוד', 9, 'False', 'True', 'מעלה את יכולת המיקוד של הדמות ', '');
-
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (101, 'חרשות', 16, 'False', 'False', 'הדמות אינה יכולה לשמוע שום צליל', '');
-
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (102, 'השפעה על גזים', 31, 'False', 'False', 'על פי תכונת השיקוי מחזק גז או מחליש אותו', '');
-
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (103, 'מוליכות', 77, 'False', 'False', 'העברת אנרגיה בין חומרים או גופים שונים', '');
-
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (104, 'השפעה על אבן שמים', 23, 'False', 'False', '', '');
-
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (105, 'חולשה רוחנית', 54, 'False', 'False', '', '');
-
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (106, 'חיזוק רוחני', 56, 'False', 'False', '', '');
-
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (107, 'נפיץ', 59, 'False', 'False', '', '');
-
-INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (108, 'חיבור למקור הperception', 80, 'False', 'False', '', '');
+INSERT INTO [Effects] ([ID], [Name], [Power], [Commulative], [Has_Counter], [Description], [Comment]) VALUES (97, 'ממתן התמכרות', 85, 'True', 'True', 'ממתן את ההשפעה של התמכרות, משהה את פעילות ואף מבטל אותה קליל', '');
 
 SET IDENTITY_INSERT [Effects] OFF;
 
@@ -762,36 +1969,6 @@ INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES
 
 INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (58, 42, '1');
 
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (106, 14, '1');
-
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (106, 27, '1');
-
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (106, 87, '1');
-
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (107, 26, '3');
-
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (107, 46, '3');
-
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (107, 25, '3');
-
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (107, 31, '1');
-
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (107, 35, '5');
-
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (108, 33, '2');
-
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (108, 19, '1');
-
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (108, 37, '2');
-
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (109, 12, '1');
-
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (109, 29, '1');
-
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (109, 75, '2');
-
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (109, 57, '1');
-
 INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (58, 51, '1');
 
 INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (59, 45, '1');
@@ -1108,23 +2285,9 @@ INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES
 
 INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (102, 44, '1');
 
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (103, 19, '1');
-
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (103, 54, '1');
-
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (103, 36, '1');
-
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (105, 45, '1');
-
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (105, 54, '1');
-
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (105, 62, '1');
-
-INSERT INTO [Potion_To_Effect] ([Potion_ID], [Effect_ID], [Effect_Level]) VALUES (105, 87, '1');
-
 SET IDENTITY_INSERT [Potions] ON;
 
-INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (17, 'נוגד רעלים A', 'השיקוי מבטל את השפעת רעלים מסוג A', 'א. מכניקה');
+INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (17, 'נוגד רעלים 1', 'השיקוי מבטל את השפעת רעלים מדרגה 1', 'א. מכניקה');
 
 INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (18, 'כוהל אלכימי', 'משמש לחיטוי פצעים', 'א. מכניקה');
 
@@ -1153,7 +2316,7 @@ INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (28, 
 
 INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (64, 'רעל פאניקה', 'הדמות חווה הזיות מן הזן הגרוע ביותר ומחפשת כל דבר שהוא להתחבא מאחוריו מפני החזיונות. השפעתו מתגברת ככל שהזמן עובר ואם לא יטופל ע"י נוגדן מתאים הקורבן ימות תוך שעה.', 'א.(רנדיר) מכאניקה');
 
-INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (30, 'נוגדן מאצות הביצה', 'טיפות מרירות אשר מאפשרות לגוף להתנגד לרעלים פעילים בסוג B.', 'א. מכניקה');
+INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (30, 'נוגד רעלים 2', 'טיפות מרירות אשר מאפשרות לגוף להתנגד לרעלים פעילים ברמה 2.', 'א. מכניקה');
 
 INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (66, 'שיקוי ברזרקרים', 'סוד טאנדרולי שמור היטב, המעניק ללוחמים אחוזי הטירוף מהצפון את חוסנם האגדי. מוסיף 2 נק"פ למשך שעה או הקרב הקרוב - מה שמגיע קודם.', 'א.(רנדיר) מכאניקה');
 
@@ -1179,16 +2342,16 @@ INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (39, 
 
 INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (40, 'רעל שיתוק', ' השיתוק מתחיל דקה לאחר שתיית הרעל, משתק את הידיים לאט וממשיך לשאר הגוף בשלושת הדקות שלאחר מכן. אם לא יטופל ע"י נוגדן מתאים הקורבן ימות תוך חצי שעה.', 'א. מכניקה');
 
-INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (41, 'נוגד רעלים C מעוור', 'מרקחת הנמשחת מתחת לעיניים ומבטלת את השפעתו של רעל מרמה C.
-אם זאת, הדמות אשר השיקוי נמרח עליה מאבדת לחלוטין את הראיה שלה למשך 15 דק''.', 'א. מכניקה');
+INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (41, 'נוגד רעלים 3 מעוור', 'מרקחת הנמשחת מתחת לעיניים ומבטלת את השפעתו של רעל מעוצמה 3.
+אם זאת, הדמות אשר השיקוי נמרך עליה מאבדת לחלוטין את הראיה שלה למשך 15 דק''.', 'א. מכניקה');
 
 INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (42, 'רעל שינה רעה ושחורה ', 'המורעל חווה כעס רב כלפי כל מי שלידו אך גם ישנוניות ואובדן אוריינטציה למשך דקה ולאחריה יירדם. אם לא יאבחנו את הרעל ויטפלו בו במהלך העשר דקות הבאות, תמות הדמות בשנתה.
 הדמות אינה אגרסיבית כאשר היא ישנה.', 'א. מכניקה');
 
-INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (43, 'נוגד רעלים מסוג D ומעלה בטחון עצמי', 'תרחיף של תמציות רבות אשר לרוב נמזג עם תה חזק, ומבטל את השפעתם של רעלים מסוג D.
+INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (43, 'נוגד רעלים דרגה 4 ומעלה בטחון עצמי', 'תרחיף של תמציות רבות אשר לרוב נמזג עם תה חזק, ומבטל את השפעתם של רעלים מעוצמה 4.
 הדמות תרגיש חוסר דאגה למצבה האישי ולרעל אשר פגע בה.', 'א. מכניקה');
 
-INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (44, 'חיסון כנגד הרעלה', 'חומר השוהה במערכת של הדמות למשך שבוע ימים. במידה והדמות מורעלת באופן כלשהו בזמן הרלוונטי, היא תקיא את הרעל ואת הנסיוב ותבטל את השפעת הרעלים עד סוג C.', 'א. מכניקה');
+INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (44, 'חיסון כנגד הרעלה', 'חומר השוהה במערכת של הדמות למשך שבוע ימים. במידה והדמות מורעלת באופן כלשהו בזמן הרלוונטי, היא תקיא את הרעל ואת הנסיוב ותבטל את השפעת הרעל - לא משנה מה עוצמת הרעל.', 'א. מכניקה');
 
 INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (45, 'היפנוזה', 'הופך את שותה השיקוי לנוח להשפעה למשך 15 דקות, ומאפשר למי שנתן לו את השיקוי לתת לו הוראה אחת פשוטה, אליה לא יוכל להתנגד.', 'א. מכניקה');
 
@@ -1221,7 +2384,7 @@ INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (58, 
 
 INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (59, 'שיקוי ערפדות בסיסי', 'הדמות יכולה לשתות דם של דמות אחרת על מנת להחזיר נק"פ. הדמות אינה יכולה להשתמש ביכולת זו יותר משלוש פעמים. נגמר בלילה של אותו היום.', 'הקיסר החיוור');
 
-INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (60, 'נוגד רעלים וגורם להזיות', 'נוגד רעלים  סוג A אשר גורם להזיות תוך חצי שעה
+INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (60, 'נוגד רעלים וגורם להזיות', 'נוגד רעלים רמה 1 אשר גורם להזיות תוך חצי שעה
 מזמן שתיית השיקוי', 'ספריה');
 
 INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (61, 'רעל גרד שמנוני', 'שמן זה גורם לגרד בלתי נשלט שמתגבר ככל שעובר הזמן. אם הקורבן לא יטופל ע"י נוגדן מתאים הוא ימות תוך יום.', 'ב. מכאניקה');
@@ -1317,22 +2480,6 @@ INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (100,
 INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (101, 'שומר קור משופר', 'כאשר מוסף לאלמנטים - שומר עליהם קרים למשך שבוע', '');
 
 INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (102, 'שמן הנשק של סמיט''', '', 'סמיט''');
-
-INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (103, 'אשמורת אחרונה', 'מייצב דמות הנמצאת על 0 נק""פ למשך 10 דקות ללא השגחה נוספת.
-לאחר זמן זה הדמות תמות בלא תקבל טיפול נוסף.  ', 'העלמה סרפין');
-
-INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (108, 'נוגדן B', 'נוגדן לרעלניים סוג B זול וקל יותר להכנה
-', 'סטרוידריוס');
-
-INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (105, 'זיעת דרקונים ', 'משחה לחיזוק עור- מיועדת ליצירת שלפוחיות דרקון.', 'דאנוויק');
-
-INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (106, 'דבק', 'משחה שחורה המשמשת להדבקת חומרים.', 'דאנוויק');
-
-INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (107, 'חורבן מוזהב', 'חומצה חזקה מאוד היכולה לעכל כל דבר כולל זהב.  
-חומצה זו מסוכנת מאד, לוקח לה פחות מדקה לעבור דרך החומר שאיתו היא באה במגע. החומצה מתחילה לבעבע, לעכל את החומר ואז לעבור דרכו אל החומר הבא עד התמוססות מלאה. ', 'דאנוויק');
-
-INSERT INTO [Potions] ([ID], [Name], [Description], [Creator_Name]) VALUES (109, 'שיקוי נגד לסם אמת', 'שיקוי זה מאפשר להתנגד להשפעות של שיקוי אמת. השיקוי מבטל שתייה של שיקוי אמת יחיד. שתייה של שיקוי אמת נוסף עדיין יפעיל כרגיל.
-הדמות מרגישה קור עז לאחר לקיחת השיקוי והיא מתקשה לנשום באופן מושלם. היא תתקשה לרוץ או לבצע פעולות פיזיות עצימות.', 'א. מכניקה');
 
 SET IDENTITY_INSERT [Potions] OFF;
 
@@ -1468,7 +2615,7 @@ INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_
 
 INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (61, 6, 3, '', 41);
 
-INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (62, 5, 1, '', 99);
+INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (62, 5, 1, '', 82);
 
 INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (63, 5, 5, '', 80);
 
@@ -1518,13 +2665,13 @@ INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_
 
 INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (86, 8, 6, '', 81);
 
-INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (87, 8, 7, '', 101);
+INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (87, 8, 7, '', 82);
 
 INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (88, 9, 2, '', 81);
 
 INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (89, 9, 3, '', 36);
 
-INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (90, 9, 5, '', 100);
+INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (90, 9, 5, '', 82);
 
 INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (91, 9, 6, '', 86);
 
@@ -1552,17 +2699,17 @@ INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_
 
 INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (103, 11, 8, '', 81);
 
-INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (104, 12, 7, '', 87);
+INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (104, 12, 7, '', 82);
 
 INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (105, 12, 6, '', 22);
 
-INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (106, 12, 4, '', 98);
+INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (106, 12, 4, '', 82);
 
-INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (107, 12, 3, '', 80);
+INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (107, 12, 3, '', 82);
 
 INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (108, 12, 1, '', 81);
 
-INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (109, 13, 1, '', 102);
+INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (109, 13, 1, '', 82);
 
 INSERT INTO [Products] ([ID], [Ingredient_ID], [Procedure_ID], [Comment], [Main_Effect_ID]) VALUES (110, 13, 2, '', 31);
 
@@ -2140,7 +3287,7 @@ INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (61, 41);
 
 INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (61, 21);
 
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (62, 101);
+INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (62, 82);
 
 INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (63, 50);
 
@@ -2328,7 +3475,7 @@ INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (85, 23);
 
 INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (86, 81);
 
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (87, 34);
+INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (87, 82);
 
 INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (88, 81);
 
@@ -2342,7 +3489,7 @@ INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (89, 60);
 
 INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (89, 22);
 
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (90, 100);
+INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (90, 82);
 
 INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (91, 86);
 
@@ -2438,7 +3585,7 @@ INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (102, 45);
 
 INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (103, 81);
 
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (104, 87);
+INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (104, 82);
 
 INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (105, 22);
 
@@ -2450,13 +3597,13 @@ INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (105, 25);
 
 INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (105, 26);
 
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (106, 98);
+INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (106, 82);
 
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (107, 26);
+INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (107, 82);
 
 INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (108, 81);
 
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (109, 99);
+INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (109, 82);
 
 INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (110, 31);
 
@@ -2562,68 +3709,6 @@ INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (85, 37);
 
 INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (85, 33);
 
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (107, 32);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (107, 25);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (107, 51);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (107, 80);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (106, 101);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (106, 34);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (106, 102);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (106, 47);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (106, 86);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (87, 102);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (87, 39);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (87, 101);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (87, 35);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (87, 32);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (109, 102);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (109, 14);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (109, 54);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (109, 98);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (90, 57);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (90, 12);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (90, 47);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (62, 99);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (62, 54);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (62, 51);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (90, 87);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (109, 87);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (104, 34);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (104, 28);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (104, 101);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (104, 20);
-
-INSERT INTO [Products_To_Effects] ([Product_ID], [Effect_ID]) VALUES (104, 47);
-
 SET IDENTITY_INSERT [Specials] ON;
 
 INSERT INTO [Specials] ([ID], [Name], [Power], [Comment]) VALUES (13, 'זהב', 1, '');
@@ -2663,20 +3748,6 @@ INSERT INTO [Specials] ([ID], [Name], [Power], [Comment]) VALUES (29, 'פלדת 
 INSERT INTO [Specials] ([ID], [Name], [Power], [Comment]) VALUES (30, 'עץ', 18, '');
 
 INSERT INTO [Specials] ([ID], [Name], [Power], [Comment]) VALUES (31, 'מתכת כוכבים', 19, '');
-
-INSERT INTO [Specials] ([ID], [Name], [Power], [Comment]) VALUES (32, 'אבקת נחושת', 20, '');
-
-INSERT INTO [Specials] ([ID], [Name], [Power], [Comment]) VALUES (33, 'אבקת נחושת', 21, '');
-
-INSERT INTO [Specials] ([ID], [Name], [Power], [Comment]) VALUES (34, 'אבקת "עץ החיים"', 22, 'רכיב מיוחד הקיים רק אצל טאנדרול');
-
-INSERT INTO [Specials] ([ID], [Name], [Power], [Comment]) VALUES (35, 'אבן שמיים', 23, '');
-
-INSERT INTO [Specials] ([ID], [Name], [Power], [Comment]) VALUES (36, 'אבק שריפה בסיסי', 24, '');
-
-INSERT INTO [Specials] ([ID], [Name], [Power], [Comment]) VALUES (37, 'נשמה', 25, '');
-
-INSERT INTO [Specials] ([ID], [Name], [Power], [Comment]) VALUES (38, 'אבקת קריסטל', 26, '');
 
 SET IDENTITY_INSERT [Specials] OFF;
 
@@ -2740,16 +3811,6 @@ INSERT INTO [Specials_To_Effects] ([Special_ID], [Old_ID], [New_ID]) VALUES (22,
 
 INSERT INTO [Specials_To_Effects] ([Special_ID], [Old_ID], [New_ID]) VALUES (28, 30, 97);
 
-INSERT INTO [Specials_To_Effects] ([Special_ID], [Old_ID], [New_ID]) VALUES (33, 50, 103);
-
-INSERT INTO [Specials_To_Effects] ([Special_ID], [Old_ID], [New_ID]) VALUES (35, 46, 104);
-
-INSERT INTO [Specials_To_Effects] ([Special_ID], [Old_ID], [New_ID]) VALUES (35, 47, 84);
-
-INSERT INTO [Specials_To_Effects] ([Special_ID], [Old_ID], [New_ID]) VALUES (35, 49, 108);
-
-INSERT INTO [Specials_To_Effects] ([Special_ID], [Old_ID], [New_ID]) VALUES (36, 34, 107);
-
 ALTER TABLE [Counters] ADD CONSTRAINT [PK_Counters] PRIMARY KEY ([Effect_ID], [Counter_ID]);
 
 ALTER TABLE [Effects] ADD CONSTRAINT [PK_Effects] PRIMARY KEY ([ID]);
@@ -2777,4 +3838,3 @@ CREATE UNIQUE INDEX [UQ__Procedures__0000000000000057] ON [Procedures] ([ID] ASC
 CREATE UNIQUE INDEX [UQ__Products__000000000000006C] ON [Products] ([ID] ASC);
 
 CREATE UNIQUE INDEX [UQ__Specials__00000000000000F3] ON [Specials] ([ID] ASC);
-
