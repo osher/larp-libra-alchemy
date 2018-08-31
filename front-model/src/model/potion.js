@@ -8,6 +8,7 @@ export default class Potion {
   constructor(id, name, creator, description, ...effects) {
     if (Array.isArray(id)) return new Potion(...id);
 
+    this.type = "po";
     this.id = id;
     this.name = name;
     this.creator = creator;
