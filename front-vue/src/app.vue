@@ -37,7 +37,6 @@ body { padding: 0 ; margin: 0; overflow: hidden }
 }
 </style>
 
-
 <template>
   <div id="app">
     <div id="index">
@@ -167,9 +166,11 @@ export default {
     duplicate(item) {
         console.log('app.duplicate', item)
         const effects = this.receipt.duplicate(item);
-        effects
-          ? this.effets = effects
-          : console.warn('לא ניתן להוסיף את אותו תוצר פעם שלישית');
+        if (!effects) return console.warn('לא ניתן להוסיף את אותו תוצר פעם שלישית');
+        
+        //TRICKY: work around some vue issue... :P
+        this.effets = [];
+        setTimeout( () => this.effects = effects, 1); 
     },
     indexSelection(item) {
         console.log('app.indexSelection', item)
