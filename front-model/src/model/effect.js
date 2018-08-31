@@ -7,6 +7,7 @@ export default class Effect {
   constructor(id, precedence, name, descr, antigen) {
     if (Array.isArray(id)) return new Effect(...id);
 
+    this.type = "e";
     this.id = id;
     this.name = name;
     this.precedence = precedence;
