@@ -17,6 +17,8 @@ body { padding: 0 ; margin: 0; overflow: hidden }
 }
 #search {
   height: 40px;
+  display: flex;
+  flex-direction: row;
 }
 #workspace {
   padding: 0px 20px 40px 20px;
@@ -50,9 +52,14 @@ body { padding: 0 ; margin: 0; overflow: hidden }
         @product="addProduct"
         @special-ingr="addSpecialIngredient"
       />
+      <HUD
+        @results-mode="resultsMode"
+        @reset="reset"
+      />
       </div>
       <div id="workspace">
         <Receipt
+          ref="receipt"
           :products="products"
           :specials="specials"
           @drop="drop"
@@ -63,8 +70,9 @@ body { padding: 0 ; margin: 0; overflow: hidden }
             <Results 
               ref="results"
               :effects="sortedEffects"
+              :mode="resultsModeCode"
             />
-            <SavePotion v-if="effects.length && !potions.source" 
+            <SavePotion v-if="sortedEffects.length && !potions.source" 
               ref="saveForm"
               @new-potion="publish"
             />
@@ -82,6 +90,7 @@ body { padding: 0 ; margin: 0; overflow: hidden }
 
 <script>
 import Search from './components/search.vue'
+import HUD from './components/hud.vue'
 import Receipt from './components/receipt.vue'
 import Results from './components/results.vue'
 import SavePotion from './components/save-potion.vue'
@@ -101,18 +110,20 @@ export default {
       step: 0,
       products: r.products,
       specials: r.specials,
-      effects: r.effects,
+      effects: [],
       receipt: r,
       pubName: '',
       pubDescr: '',
       pubCreator: '',
-      reject: ''
+      reject: '',
+      resultsModeCode: 1
     }
   },
 
   components: {
     LabIndex,
     Search,
+    HUD,
     Receipt,
     Results,
     SavePotion,
@@ -121,7 +132,7 @@ export default {
 
   computed: {
     sortedEffects() {
-      return this.effects.concat().sort((a,b) => b.id - a.id)
+      return this.receipt.effects.concat().sort((a,b) => b.id - a.id)
     },
     potions() {
       return model.lab.similar(this.effects)
@@ -129,28 +140,40 @@ export default {
   },
 
   methods: {
+    resultsMode(code) {
+        this.$refs.receipt.viewMode( this.resultsModeCode = code);
+    },
+    reset() {
+        const r = this.receipt = window.receipt = model.receipt();
+        this.products = r.products;
+        this.specials = r.specials;
+        this.effects = r.effects;
+    },
     addProduct({ingredient, procedure}) {
-      if (!this.receipt.produce(ingredient, procedure))
-          console.warn('לא ניתן להוסיף את אותו תוצר פעם שלישית');
+      console.log('app.addProduct', ingredient, procedure)
+      const effects = this.receipt.produce(ingredient, procedure);
+      effects
+        ? this.effects = effects
+        : console.warn('לא ניתן להוסיף את אותו תוצר פעם שלישית');
     },
     addSpecialIngredient(specialIngr) { 
-      this.receipt.specialize(specialIngr);
+        console.log('app.addSpecialIngredient', specialIngr)
+        this.effects = this.receipt.specialize(specialIngr);
     },
     drop(item) {
         console.log('app.drop', item.type || 'prod', item)
-        this.receipt.drop(item);
+        this.effects = this.receipt.drop(item);
     },
     duplicate(item) {
-        const collection = 
-          item.type == 'si'
-            ? this.receipt.specials
-            : this.receipt.products
-          ;
-        collection.push(item);
-        collection.sort(({name:a}, {name:b}) => a > b ? 1 : a == b ? 0 : -1);
+        console.log('app.duplicate', item)
+        const effects = this.receipt.duplicate(item);
+        effects
+          ? this.effets = effects
+          : console.warn('לא ניתן להוסיף את אותו תוצר פעם שלישית');
     },
     indexSelection(item) {
-      this.$refs.search.select(item)
+        console.log('app.indexSelection', item)
+        this.$refs.search.select(item)
     },
     publish({name, by, descr, effects}) {
       const data = {
@@ -176,7 +199,7 @@ export default {
       .then(() => { 
         /* indicate success */
         this.$refs.saveForm.ok("הפרסום הצליח")
-        .then(() => this.products.concat(this.specials).forEach(item => this.receipt.drop(item)));
+        .then(() => this.reset());
       })
     }
   }

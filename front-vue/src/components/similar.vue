@@ -2,6 +2,7 @@
 .source {
   background-color: lightyellow;
   color: darkblue;
+  padding: 10px 20px 20px 20px;
 }
 .source H2 { color: darkred }
 .a {

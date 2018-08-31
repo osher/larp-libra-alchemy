@@ -81,17 +81,17 @@
             @click="duplicate(p)"
           >+1</button>
         </span>
-        <div class="effects">
+        <div v-if="viewMode()" class="effects">
           <b>השפעות:</b> <span v-for="e in appliedEffects(p)" class="effect" :class="isMain(p, e)">{{e.name}}</span>
         </div>
-        <div class="antigens">
+        <div v-if="viewMode()" class="antigens">
           <b>ניגודים:</b><span v-for="ae in p.antigens(canDuplicate(p))" class="antigen">{{ae.name}}</span>
         </div>
       </li>
       <li v-for="(s,ix) in specials" :key="'i-' + ix" class="comp si">
         {{s.name}}
         <button @click="drop(s)">X</button>
-        <div class="alterations">
+        <div v-if="viewMode" class="alterations">
           <b>החלפות: </b><span v-for="a in s.appliedAlterations()" class="alteration">{{a.src.name}} -> {{a.trg.name}}</span>
         </div>
       </li>
@@ -104,6 +104,7 @@
 import m from 'libra-front-model';
 export default {
   props: [ 'products', 'specials' ],
+  data: () => ({mode: 1}),
   methods: {
     drop(item) {
       console.log('drop', item, item.type || 'prod');
@@ -123,6 +124,11 @@ export default {
         ? [ product.mainEffect ]
         : product.effects
       )//.sort(m.byNameSort)
+    },
+    viewMode(mode) {
+      return 'undefined' == typeof mode
+        ? this.mode
+        : this.mode = mode;
     }
   }
 }
