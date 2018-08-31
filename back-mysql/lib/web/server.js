@@ -22,7 +22,7 @@ module.exports = ({
 
     app.post('/potion', ({body: potion}, a, n) => {
         model.createPotion(potion)
-        .then(v => a.json(v))
+        .then(v => (web.msg('potion-published', v), a.json(v)))
         .catch(n)
     });
 
@@ -37,19 +37,23 @@ module.exports = ({
         }
     });
     const web = require('http').createServer(app);
-/*
+
     {
       const log = logger.of('sockets');
+      let socket_id = 0;
       const channel = io(web).on('connection', (skt) => {
-          log.info('user connected');
+          skt.id = ++socket_id;
+          log.info({socket_id}, 'user connected: %s', skt.id);
 
           skt.on('disconnect', () => {
-              console.log('user disconnected');
+              console.log({socket_id: skt.id}, 'user disconnected: %s', skt.id);
           });
+          
+          setTimeout(() => skt.emit('welcome', {foo: 'bar'}), 100);
       });
 
-      web.msg => 
-    }*/
+      web.msg = (type, msg) => channel.emit(type, msg);
+    }
     
     return web;
 };
