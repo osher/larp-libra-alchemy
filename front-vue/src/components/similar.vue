@@ -2,9 +2,15 @@
 .source {
   background-color: lightyellow;
   color: darkblue;
+  padding: 10px 20px 20px 20px;
 }
 .source H2 { color: darkred }
-.a {color: darkorange}
+.a {
+  color: darkorange;
+}
+.similar {
+  margin-bottom: 20px;
+}
 .descr {
   margin-top: 35px;
 }
@@ -12,23 +18,21 @@
 
 <template>
   <div>
-    <div v-if="potions.source" class="source">
-      <h2>שיקוי קיים</h2>
-      <b>{{potions.source.name}}</b><br>
-      <p>{{potions.source.description}}</p>
-      <i>{{potions.source.creator}}</i>
-    </div>
+    <PotionInfo
+      v-if="potions.source"
+      :potion="potions.source"
+    ></PotionInfo>
     <h2>שיקויים דומים</h2>
     <div>
-      <div v-for="(p,ix) in potions" :key="ix">
+      <div v-for="(p,ix) in potions" :key="ix" class="similar">
         <ul>
-          <li v-for="a in p.effects" class="a">{{a.effect.name}} ({{a.level}})</li>
-          <p class="descr">
-            <b>{{p.name}}</b><br>
-            <p>{{p.description}}</p>
-            <i>{{p.creator}}</i>
-          </p>
+          <li v-for="a in p.sortedEffects()" class="a">{{a.effect.name}} ({{a.level}})</li>
         </ul>
+        <div class="descr">
+          <b :potion="p.id">{{p.name}}</b><br>
+          <p>{{p.description}}</p>
+          <i>{{p.creator}}</i>
+        </div>
       </div>
     </div>
     <span v-if="!potions.length">-אין-</span>
@@ -36,7 +40,11 @@
 </template>
 
 <script>
+import PotionInfo from './potion-info';
 export default {
   props: [ 'potions' ],
+  components: { 
+    PotionInfo
+  }
 }
 </script>

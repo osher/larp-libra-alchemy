@@ -37,6 +37,7 @@ module.exports = ({
       declare: (name, protos, statics) => {
         const { initialize, checkSchema, checkSchemaConditionally = [] } = protos;
         assign(protos, {
+          hasTimestamps: false,
           initialize:
             initialize 
               ? function overridenInitialize() { this.on('saving', this.checkSchema); initialize.apply(this) }
@@ -49,16 +50,21 @@ module.exports = ({
       lookup: (name, protos, {load = true, statics} = {}) => {
           const en = enums[name] = newEnum();
           if (!('hasTimestamps' in protos)) protos.hasTimestamps = false;
-          const lookup = assign( Bookshelf.declare(name, protos, statics), {
-            types: [],
-            reload: function () {
-              return this.findAll().then(rows => {
-                  const id = protos.idAttribute;
-                  rows.forEach(row => this.types.push( en[row.get(id)] = row.attributes ));
-                  Log.silly('lookup loaded: ', name);
-              })
+          const lookup = assign( Bookshelf.declare(
+            name,
+              assign({hasTimestamps: false}, protos),
+              statics
+            ), {
+              types: [],
+              reload: function () {
+                return this.findAll().then(rows => {
+                    const id = protos.idAttribute;
+                    rows.forEach(row => this.types.push( en[row.get(id)] = row.attributes ));
+                    Log.silly('lookup loaded: ', name);
+                })
+              }
             }
-          });
+          );
           let p
           if (false !== load)
               p = lookup.reload().catch(err => {

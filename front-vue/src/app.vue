@@ -17,6 +17,8 @@ body { padding: 0 ; margin: 0; overflow: hidden }
 }
 #search {
   height: 40px;
+  display: flex;
+  flex-direction: row;
 }
 #workspace {
   padding: 0px 20px 40px 20px;
@@ -33,28 +35,7 @@ body { padding: 0 ; margin: 0; overflow: hidden }
   flex-wrap: wrap;
   flex-direction: column;
 }
-#results #saveForm {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  margin-top: 20px;
-}
-#saveForm INPUT {
-  flex-grow: 1;
-  font-weight: bold;
-}
-#saveForm .cr {
-  font-style: italic;
-  font-weight: normal;
-} 
-#results TEXTAREA {
-  width: 100%;
-  height: 100px;
-  font-family: arial;
-}
 </style>
-
 
 <template>
   <div id="app">
@@ -70,9 +51,14 @@ body { padding: 0 ; margin: 0; overflow: hidden }
         @product="addProduct"
         @special-ingr="addSpecialIngredient"
       />
+      <HUD
+        @results-mode="resultsMode"
+        @reset="reset"
+      />
       </div>
       <div id="workspace">
         <Receipt
+          ref="receipt"
           :products="products"
           :specials="specials"
           @drop="drop"
@@ -81,13 +67,14 @@ body { padding: 0 ; margin: 0; overflow: hidden }
         <div id="results">
           <div class="h">
             <Results 
-              :effects="effects"
+              ref="results"
+              :effects="sortedEffects"
+              :mode="resultsModeCode"
             />
-            <div v-if="effects.length && !potions.source" id="saveForm">
-              <input v-model="pubName"/><button @click="publish">פרסם</button>
-              <textarea v-model="pubDescr"></textarea>
-              יוצר: <input class="cr" v-model="pubCreator"/>
-            </div>
+            <SavePotion v-if="sortedEffects.length && !potions.source" 
+              ref="saveForm"
+              @new-potion="publish"
+            />
           </div>
           <div class="h">
             <Similar
@@ -102,8 +89,10 @@ body { padding: 0 ; margin: 0; overflow: hidden }
 
 <script>
 import Search from './components/search.vue'
+import HUD from './components/hud.vue'
 import Receipt from './components/receipt.vue'
 import Results from './components/results.vue'
+import SavePotion from './components/save-potion.vue'
 import Similar from './components/similar.vue'
 import LabIndex from './components/lab-index.vue'
 import model from 'libra-front-model'
@@ -120,24 +109,29 @@ export default {
       step: 0,
       products: r.products,
       specials: r.specials,
+      effects: [],
       receipt: r,
       pubName: '',
       pubDescr: '',
       pubCreator: '',
+      reject: '',
+      resultsModeCode: 1
     }
   },
 
   components: {
     LabIndex,
     Search,
+    HUD,
     Receipt,
     Results,
+    SavePotion,
     Similar
   },
 
   computed: {
-    effects() {
-      return model.lab.execute(this.receipt)
+    sortedEffects() {
+      return this.receipt.effects.concat().sort((a,b) => b.id - a.id)
     },
     potions() {
       return model.lab.similar(this.effects)
@@ -145,58 +139,53 @@ export default {
   },
 
   methods: {
+    resultsMode(code) {
+        this.$refs.receipt.viewMode( this.resultsModeCode = code);
+    },
+    reset() {
+        const r = this.receipt = window.receipt = model.receipt();
+        this.products = r.products;
+        this.specials = r.specials;
+        this.effects = r.effects;
+    },
     addProduct({ingredient, procedure}) {
-      if (!this.receipt.produce(ingredient, procedure))
-          console.warn('לא ניתן להוסיף את אותו תוצר פעם שלישית');
+      console.log('app.addProduct', ingredient, procedure)
+      const effects = this.receipt.produce(ingredient, procedure);
+      effects
+        ? this.effects = effects
+        : console.warn('לא ניתן להוסיף את אותו תוצר פעם שלישית');
     },
     addSpecialIngredient(specialIngr) { 
-      this.receipt.specialize(specialIngr);
+        console.log('app.addSpecialIngredient', specialIngr)
+        this.effects = this.receipt.specialize(specialIngr);
     },
     drop(item) {
         console.log('app.drop', item.type || 'prod', item)
-        this.receipt.drop(item);
+        this.effects = this.receipt.drop(item);
     },
     duplicate(item) {
-        const collection = 
-          item.type == 'si'
-            ? this.receipt.specials
-            : this.receipt.products
-          ;
-        collection.push(item);
-        collection.sort(({name:a}, {name:b}) => a > b ? 1 : a == b ? 0 : -1);
+        console.log('app.duplicate', item)
+        const effects = this.receipt.duplicate(item);
+        if (!effects) return console.warn('לא ניתן להוסיף את אותו תוצר פעם שלישית');
+        
+        //TRICKY: work around some vue issue... :P
+        this.effets = [];
+        setTimeout( () => this.effects = effects, 1); 
     },
     indexSelection(item) {
-      this.$refs.search.select(item)
+        console.log('app.indexSelection', item)
+        this.$refs.search.select(item)
     },
-    publish() {
-      const { 
-        pubName: name,
-        pubDescr: descr,
-        pubCreator: by,
-        effects 
-      } = this;
-
-      const data = { 
+    publish({name, by, descr, effects}) {
+      const data = {
         name,
         by,
         descr,
-        effects:  
-          effects.map(
-            ({level, effect: { id: effectId }}) => ({effectId, level})
-          )
+        effects: this.sortedEffects.slice(0,5).map(
+          ({level, effect: { id: effectId }}) => ([effectId, level])
+        )
       };
-      
-      console.log('publish clicked', data)
-      
-      const reject =
-        !name && "יש להזין שם שיקוי"
-        || descr.length < 20 && "תיאור השיקוי קצר מדיי"
-        || !by && "יש להזין את שם דמות יוצר השיקוי"
-      ;
-      if (reject) {
-          return alert(reject);
-      }
-      
+
       //TBD: indicate sending with loader
       fetch('http://localhost:3030/potion', {
         method: 'POST',
@@ -205,8 +194,14 @@ export default {
         },
         body: JSON.stringify(data)
       })
-      .then(() => { /* indicate success */ })
-      .catch((e) => { /* indicate error */ })
+      .catch((e) => { 
+        this.$refs.saveForm.err("הפרסום לא הצליח :(")
+      })
+      .then(() => { 
+        /* indicate success */
+        this.$refs.saveForm.ok("הפרסום הצליח")
+        .then(() => this.reset());
+      })
     }
   }
  }

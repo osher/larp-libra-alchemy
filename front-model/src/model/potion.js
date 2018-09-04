@@ -8,6 +8,7 @@ export default class Potion {
   constructor(id, name, creator, description, ...effects) {
     if (Array.isArray(id)) return new Potion(...id);
 
+    this.type = "po";
     this.id = id;
     this.name = name;
     this.creator = creator;
@@ -15,12 +16,16 @@ export default class Potion {
 
     this.effects = effects
       .map(([effect, level]) => {
-        return { effect: Effect.all.byId(effect), level };
+        effect = Effect.all.byId(effect);
+        return { effect, level, id: (level + 1) * 1000 + (1000 - effect.precedence) };
       })
-      .sort((a, b) => b.level - a.level);
+      .sort((a, b) => b.id - a.id);
 
     this.ehash = Potion.appliedEffectsHash(this.effects);
     Potion.byEffectsHash.add(this);
+  }
+  sortedEffects() {
+      return this.effects.concat().sort((a,b) => b.id - a.id)
   }
 }
 Potion.all = byName({ instantiate: Potion });

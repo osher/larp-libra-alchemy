@@ -2,7 +2,7 @@
   <div>
     <h2>השפעות התוצאה</h2>
     <ul v-if="effects.length">
-      <li v-for="(e,ix) in effects" :key="ix" :class="ix > 5 ? 'o' : 'i'">
+      <li v-for="(e,ix) in effects" :key="ix" :class="ix >= 5 ? 'o' : 'i'">
         {{e.effect.name}} ({{e.level}})
       </li>
     </ul>

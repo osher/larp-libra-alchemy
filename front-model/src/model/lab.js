@@ -61,7 +61,7 @@ const lab = {
     console.log(
       "תוצאת המתכון: %s",
       leveled
-        .map(({ effect, level }) => `\n - ${effect.name}, רמה ${level}`)
+        .map(({ effect, level }) => `\n - ${effect.name} (${effect.precedence}), רמה ${level}`)
         .join("")
     );
     return leveled;
@@ -198,10 +198,11 @@ const lab = {
         const { level = -1 } = grouped.byId(effect.id) || {};
         return grouped.add({
           effect,
-          level: level + 1
+          level: level + 1,
+          id: (level + 1) * 1000 + (1000 - effect.precedence)
         });
       }, index({ id: e => e.effect.id }))
-      .sort((a, b) => b.level - a.level)
+      .sort((a, b) => b.id - a.id)
       .filter(({ level }) => level),
   similar: Potion.similar
 };

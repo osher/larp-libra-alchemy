@@ -40,6 +40,9 @@
   span[mtype="i"] {
     color: var(--color-ing);
   }
+  span[mtype="po"] {
+    color: var(--color-po);
+  }
   span[mtype="i"]::before {
     content: "מרכיב";
     background: var(--color-ing);
@@ -51,6 +54,11 @@
     content: "תהליך";
     background: var(--color-pr);
   }
+  span[mtype="po"]::before {
+    content: "שיקוי";
+    background: var(--color-po);
+  }
+  
 </style>
 
 <template>
@@ -74,6 +82,12 @@
           @click="select(si)"
           mtype="si"
           >{{si.name}}</span>
+      <h4>שיקויים</h4>
+        <span
+          v-for="p in potions"
+          @click="select(p)"
+          mtype="po"
+          >{{p.name}}</span>
       &nbsp;
     </div>
   </div>
