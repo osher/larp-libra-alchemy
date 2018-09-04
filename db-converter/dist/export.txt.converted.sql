@@ -2,7 +2,7 @@
 
 -- clear old tables (if found)
 DROP TABLE IF EXISTS potion_effects, potion;
-DROP TABLE IF EXISTS special_To_effect, special;
+DROP TABLE IF EXISTS special_to_effect, special;
 DROP TABLE IF EXISTS product_to_effect, antigen, product;
 DROP TABLE IF EXISTS effect, `procedure`, ingredient;
 
@@ -128,6 +128,7 @@ INSERT INTO effect (id, `name`, power, commulative, has_counter, description, `c
 INSERT INTO effect (id, `name`, power, commulative, has_counter, description, `comment`) VALUES (79, 'השהיית השפעות', 88, True, True, 'השיקוי פועל בקצב איטי מכרגיל ולהשפעה שלו לוקח זמן רב יותר להתחיל לפעול', '');
 INSERT INTO effect (id, `name`, power, commulative, has_counter, description, `comment`) VALUES (80, 'הרגעת חומר', 89, True, True, 'גורם לחומר להיות פסיבי יותר בתגובות שלו (לא מחליש אותן). מתנגד לדליק וחומציות', '');
 INSERT INTO effect (id, `name`, power, commulative, has_counter, description, `comment`) VALUES (81, '- פיצוץ -', 95, False, False, 'השיקוי שההשפעה הזאת נמצאת בתוכו מתפוצץ!', '');
+INSERT INTO effect (id, `name`, power, commulative, has_counter, description, `comment`) VALUES (82, '- נעול -', 96, False, False, 'השילוב הזה נעול במשחק הנוכחי', '');
 INSERT INTO effect (id, `name`, power, commulative, has_counter, description, `comment`) VALUES (83, '- לא פעיל -', 97, False, False, 'לשילוב הזה אין השפעה על השיקוי', '');
 INSERT INTO effect (id, `name`, power, commulative, has_counter, description, `comment`) VALUES (84, 'איבוד אוריינטציית זמן', 85, True, False, 'האדם לא מצליח להחליט אם הוא בעבר בהווה או בעתיד', '');
 INSERT INTO effect (id, `name`, power, commulative, has_counter, description, `comment`) VALUES (85, 'חיבור קוסמי - חיים', 79, True, False, 'מחבר את הדמות למעגל הקסם הבסיסי של החיים.', '');
@@ -928,41 +929,41 @@ CREATE TABLE special_to_effect (
    CONSTRAINT fk_special_to_effect__old_effect FOREIGN KEY (old_effect_id) REFERENCES effect (id),
    CONSTRAINT fk_special_to_effect__new_effect FOREIGN KEY (new_effect_id) REFERENCES effect (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (20, 54, 74);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (20, 31, 72);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (20, 45, 69);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (15, 45, 68);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (16, 54, 75);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (16, 31, 73);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (16, 45, 70);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (18, 40, 66);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (15, 47, 77);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (15, 13, 78);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (13, 40, 63);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (17, 40, 65);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (14, 40, 71);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (21, 40, 64);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (19, 40, 67);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (19, 47, 76);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (31, 47, 84);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (21, 49, 85);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (18, 86, 88);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (16, 86, 89);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (23, 70, 90);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (24, 70, 90);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (22, 70, 90);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (23, 32, 92);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (24, 32, 93);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (22, 32, 91);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (23, 50, 95);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (24, 50, 96);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (22, 50, 94);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (28, 30, 97);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (33, 50, 103);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (35, 46, 104);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (35, 47, 84);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (35, 49, 108);
-INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES (36, 34, 107);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (20, 54, 74);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (20, 31, 72);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (20, 45, 69);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (15, 45, 68);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (16, 54, 75);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (16, 31, 73);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (16, 45, 70);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (18, 40, 66);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (15, 47, 77);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (15, 13, 78);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (13, 40, 63);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (17, 40, 65);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (14, 40, 71);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (21, 40, 64);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (19, 40, 67);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (19, 47, 76);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (31, 47, 84);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (21, 49, 85);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (18, 86, 88);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (16, 86, 89);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (23, 70, 90);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (24, 70, 90);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (22, 70, 90);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (23, 32, 92);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (24, 32, 93);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (22, 32, 91);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (23, 50, 95);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (24, 50, 96);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (22, 50, 94);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (28, 30, 97);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (33, 50, 103);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (35, 46, 104);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (35, 47, 84);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (35, 49, 108);
+INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES (36, 34, 107);
 
 
 -- table potion

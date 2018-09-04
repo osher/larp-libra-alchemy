@@ -13,7 +13,7 @@ module.exports = ({
       create: (
         `-- clear old tables (if found)
         DROP TABLE IF EXISTS potion_effects, potion;
-        DROP TABLE IF EXISTS special_To_effect, special;
+        DROP TABLE IF EXISTS special_to_effect, special;
         DROP TABLE IF EXISTS product_to_effect, antigen, product;
         DROP TABLE IF EXISTS effect, \`procedure\`, ingredient`
       )
@@ -130,7 +130,7 @@ module.exports = ({
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8`
       ),
       xInsert: /INSERT INTO \[?Specials_To_Effects\]? /,
-      format: line => line.replace(/.* VALUES/, 'INSERT INTO special_To_effect (special_id, old_effect_id, new_effect_id) VALUES')
+      format: line => line.replace(/.* VALUES/, 'INSERT INTO special_to_effect (special_id, old_effect_id, new_effect_id) VALUES')
     }, {
       create: (
         `-- table potion
