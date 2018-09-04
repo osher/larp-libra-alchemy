@@ -1,4 +1,4 @@
-﻿CREATE TABLE [Counters]
+CREATE TABLE [Counters]
 (
    [Effect_ID] INT NOT NULL,
    [Counter_ID] INT NOT NULL
