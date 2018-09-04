@@ -1,0 +1,15 @@
+{
+  "name": "db-converter",
+  "private": true,
+  "version": "1.0.0",
+  "main": "index.js",
+  "bin": {
+    "libra-sql-convert": "bin/convert.js"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "node bin/convert.js data/export.txt"
+  }
+}
