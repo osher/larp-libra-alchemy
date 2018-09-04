@@ -10,6 +10,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "node bin/convert.js data/export.txt"
+    "build": "node bin/convert.js data/export.txt",
+    "apply": "mysql -u root -D libra-alchemy < dist/export.txt.converted.sql"
   }
 }
