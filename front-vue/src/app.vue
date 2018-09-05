@@ -187,7 +187,7 @@ export default {
       };
 
       //TBD: indicate sending with loader
-      fetch('http://localhost:3030/potion', {
+      fetch(window.SRV + '/potion', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

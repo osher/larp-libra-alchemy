@@ -5,7 +5,7 @@ import store from './store'
 import io from 'socket.io-client';
 
 //const {SVR} = {SRV: '/api'} //require('./config').get(location.hostname)
-const SVR = location.hash ? location.hash.substr(1) + '/api' : location.href + '/api';
+const SVR = window.SRV = location.hash ? location.hash.substr(1) : location.href + '/api';
 require('./index.scss')
 
 const socket = io(`${SVR}`);
