@@ -4,7 +4,8 @@ import App from './app.vue'
 import store from './store'
 import io from 'socket.io-client';
 
-const {SVR} = require('./config')(location.hostname)
+//const {SVR} = {SRV: '/api'} //require('./config').get(location.hostname)
+const SVR = location.hash ? location.hash.substr(1) : '/';
 require('./index.scss')
 
 const socket = io(`${SVR}`);
